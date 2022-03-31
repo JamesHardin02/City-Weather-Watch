@@ -4,19 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;700&family=Staatliches&display=swap" rel="stylesheet">
+    <!-- TailWind output.css -->
     <link rel="stylesheet" href="./tailwind/output.css">
+
     <title>City Weather Watch</title>
 </head>
-<body class="prose">
-    <h1>City Weather Watch</h1>
-    <main>
-        <div class="flex flex-col">
-            <span class="text-cyan-50">Hello</span>
-            <span>TailWind</span>
-            <span>CSS</span>
-            <p class="text-3xl font-bold underline">paragraph</p>
-        </div>
-    </main>
+<body class="bg-black">
+    <header class="flex justify-between text-silver py-4 px-8">
+
+        <a href="/" class="text-lg font-bold">Logo</a>
+
+        <ul class="hidden md:flex flex-row items-center align-middle gap-4">
+            <li><a href="#" class="bg-blue py-2 px-4 rounded-md">Home</a></li>
+            <li><a href="#" class="bg-blue py-2 px-4 rounded-md">About</a></li>
+            <li><a href="#" class="bg-blue py-2 px-4 rounded-md">Contact</a></li>
+        </ul>
+
+    </header>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
