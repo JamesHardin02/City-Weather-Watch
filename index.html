@@ -14,18 +14,34 @@
 
     <title>City Weather Watch</title>
 </head>
-<body class="bg-black">
-    <header class="flex justify-between text-silver py-4 px-8">
-
-        <a href="/" class="text-lg font-bold">Logo</a>
-
-        <ul class="hidden md:flex flex-row items-center align-middle gap-4">
-            <li><a href="#" class="bg-blue py-2 px-4 rounded-md">Home</a></li>
-            <li><a href="#" class="bg-blue py-2 px-4 rounded-md">About</a></li>
-            <li><a href="#" class="bg-blue py-2 px-4 rounded-md">Contact</a></li>
-        </ul>
-
-    </header>
+<body class="bg-neutral-500">
+    <div class="container bg-indigo-500 mx-auto h-32">
+        <h1 
+        class="text-5xl lg:text-7xl
+        text-gray-200 text-center">
+        City Weather Watch</h1>
+    </div>
+    <div class="container bg-green-700 mx-auto">
+        <div class="flex gap-8 
+        md:flex-col md:justify-end
+        flex-row justify-between">
+            <div class="flex-auto font-sans bg-blue-400
+            hover:bg-red-400 w-40 h-40 
+            text-center text-gray-600 text-xl">
+            Flex-Child:1
+            </div>
+            <div class="flex-initial font-sans bg-blue-400
+            hover:bg-red-400 w-40 h-40 
+            text-center text-gray-600 text-xl">
+            Flex-Child:2
+            </div>
+            <div class="flex-initial font-sans bg-blue-400 
+            hover:bg-red-400 w-40 h-40 
+            text-center text-gray-600 text-xl">
+            Flex-Child:3
+            </div>
+        </div>
+    </div>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
