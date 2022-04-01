@@ -1,9 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@tailwind base; /* @layer base {overwrite default element styling}*/
+@tailwind components; /* @layer components{custom style a component via utility classes*/
+@tailwind utilities; /* @layer ultities{Create custom ulitily classes 
+                        !-> MUST DEFINE @variants ->for ex: @variants hover,focus{
+                            .p-21{padding 5.5rem;}
+                        }*/
 
 @layer components{
-    .flex-child{
-        @apply flex-initial font-sans bg-blue-400 hover:bg-red-400 w-40 h-40 text-center text-gray-600 text-xl
+    .btn{
+        @apply bg-blue-300 hover:bg-blue-500 flex-initial w-40 h-20
     }
 }

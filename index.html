@@ -15,27 +15,23 @@
     <title>City Weather Watch</title>
 </head>
 <body class="bg-neutral-500">
-    <div class="container bg-indigo-500 mx-auto h-32">
+    <div class="container bg-indigo-500 mx-auto md:h-32 h-20">
         <h1 
-        class="text-5xl lg:text-7xl
+        class="text-5xl md:text-7xl
         text-gray-200 text-center">
         City Weather Watch</h1>
     </div>
-    <div class="container bg-green-700 mx-auto">
-        <div class="flex gap-8 
-        md:flex-col md:justify-end
-        flex-row justify-between">
-            <div class="flex-child">
-            Flex-Child:1
-            </div>
-            <div class="flex-child">
-            Flex-Child:2
-            </div>
-            <div class="flex-child">
-            Flex-Child:3
-            </div>
+        <div>
+            <form class="flex flex-col text-center items-center gap-5">
+                <h2 class="flex-initial">Search Weather By City</h2>
+                <input class="flex-initial w-100 h-20" id="city-input"type="text" placeholder="Search A City"/>
+                <button id="city-input-button" class="btn" type="submit">Search</button>
+            </form>
         </div>
-    </div>
+        <div class="container bg-cyan-100" id="current-weather">
+            <h2 id="city-header"></h2>
+            <p></p>
+        </div>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
