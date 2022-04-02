@@ -532,6 +532,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 5rem;
 }
 
+.w-full {
+  width: 100%;
+}
+
 .flex-initial {
   flex: 0 1 auto;
 }
@@ -558,11 +562,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(99 102 241 / var(--tw-bg-opacity));
 }
 
-.bg-cyan-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(207 250 254 / var(--tw-bg-opacity));
-}
-
 .text-center {
   text-align: center;
 }
@@ -581,6 +580,10 @@ Ensure the default browser behavior of the `hidden` attribute.
                         !-> MUST DEFINE @variants ->for ex: @variants hover,focus{
                             .p-21{padding 5.5rem;}
                         }*/
+
+.text-lg{
+  font-size: 100px;
+}
 
 @media (min-width: 768px) {
   .md\:h-32 {

@@ -1,49 +1,68 @@
 const cityInputEl = document.querySelector("#city-input");
 const cityInputButtonEl = document.querySelector("#city-input-button");
 const currentWeatherDiv = document.querySelector("#current-weather");
-const cityH2El = document.querySelector("#city-header");
 
 function displayWeather(cityName, currentWeather, wholeData) {
-    if(currentWeatherDiv.firstChild){
+    while(currentWeatherDiv.firstChild){
         currentWeatherDiv.firstChild.remove();
     };
-    
+
+    let h2DivEl = document.createElement('div');
+    h2DivEl.classList.add("w-full")
+    h2DivEl.classList.add("basis-full")
+    const cityH2El = document.createElement("h2")
+    cityH2El.textContent = cityName;
+    cityH2El.classList.add("text-lg")
+    cityH2El.classList.add("text-center")
+    h2DivEl.appendChild(cityH2El);
+
+    let descDivEl = document.createElement('div');
+    descDivEl.classList.add("flex");
+    descDivEl.classList.add("w-full");
+    descDivEl.classList.add("justify-around");
+
+    let leftDivEl = document.createElement('div');
+    leftDivEl.classList.add("flex");
+    leftDivEl.classList.add("flex-col");
+
+    let rightDivEl = document.createElement('div');
+
     // make control structure for wholeData instead of currentWeather
+    var pTempEl = document.createElement("p");
     for(const property in wholeData){
-        if(property === current){
-            const kelvin = property.temp
-            let fahrenheit = (kelvin - 273.15) * 9/5 + 32
+        console.log(property)
+        if(property === "current"){
+            const kelvin = wholeData[property]["temp"];
+            let fahrenheit = Math.trunc((kelvin - 273.15) * 9/5 + 32)
+                pTempEl.textContent = "Temperature: "+ fahrenheit;
         }
     }
-    
-    
-    
-    
-    //description: "clear sky"
-    //icon: "01d"
-    //id: 800
-    //main: "Clear"
-    cityH2El.textContent = cityName;
     for(const property in currentWeather){
-        let divEl = document.createElement('div');
-        let iconEl = document.createElement('i');
         switch (property){
             case "description":
-                var pEl = document.createElement("p");
-                pEl.textContent = `${currentWeather[property]}`;
-                divEl.appendChild(pEl);
+                var pDescEl = document.createElement("p");
+                pDescEl.textContent = `${currentWeather[property]}`;
+                leftDivEl.appendChild(pDescEl);
+                leftDivEl.appendChild(pTempEl);
                 break;
-                // need icon case
-                //convert kelvins to f to display degrees
-                ///(xK − 273.15) × 9/5 + 32 = y°F
-            case
+            case "icon":
+                var icon = "http://openweathermap.org/img/wn/"+ currentWeather[property] +"@2x.png"
+                var iconImEl = document.createElement('img');
+                iconImEl.setAttribute("alt", "Image of current weather")
+                iconImEl.setAttribute("src", icon)
+                iconImEl.classList.add("w-64")
+                iconImEl.classList.add("h-64")
+                rightDivEl.appendChild(iconImEl);
         };
-        currentWeatherDiv.appendChild(divEl);
     };
+    currentWeatherDiv.appendChild(h2DivEl);
+    descDivEl.appendChild(leftDivEl);
+    descDivEl.appendChild(rightDivEl);
+    currentWeatherDiv.appendChild(descDivEl);
 };
 
 function getWeather(initData, lat, lon){
-    const weatherApiLink = "https://api.openweathermap.org/data/2.5/onecall?lat="+ lat +"&lon="+ lon +"&appid=33e105b40a9be724f9c8bf226184c956"
+    const weatherApiLink = "https://api.openweathermap.org/data/2.5/onecall?lat="+ lat +"&lon="+ lon +"&appid=33e105b40a9be724f9c8bf226184c956";
     fetch(weatherApiLink).then(function(response){
         if(response.ok){
             response.json().then(function(data){
@@ -77,3 +96,5 @@ function getCity(event){
 }
 
 cityInputButtonEl.addEventListener("click", getCity)
+
+//Local storage add 5 most recent searches
