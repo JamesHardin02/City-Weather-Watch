@@ -2,7 +2,6 @@ const cityInputEl = document.querySelector("#city-input");
 const cityInputButtonEl = document.querySelector("#city-input-button");
 const currentWeatherDiv = document.querySelector("#current-weather");
 
-
 function displayWeather(cityName, currentWeather, wholeData) {
     while(currentWeatherDiv.firstChild){
         currentWeatherDiv.firstChild.remove();
