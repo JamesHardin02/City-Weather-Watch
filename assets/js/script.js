@@ -2,27 +2,36 @@ const cityInputEl = document.querySelector("#city-input");
 const cityInputButtonEl = document.querySelector("#city-input-button");
 const currentWeatherDiv = document.querySelector("#current-weather");
 
+// takes weather data and dynamically popualtes elements with it to then display on the page
 function displayWeather(cityName, currentWeather, wholeData) {
+    /* if there are child elements in the foundation division then remove them
+        this clears the page for the new search data*/
     while(currentWeatherDiv.firstChild){
         currentWeatherDiv.firstChild.remove();
     };
-    // city header
+
+    // -------------- City Header Els -------------- //
+    // div element that will hold the h2 of the city name
     let h2DivEl = document.createElement('div');
 
+    // header for the name of the city searched
     const cityH2El = document.createElement("h2")
     cityH2El.textContent = cityName;
     cityH2El.classList.add("text-lg")
     cityH2El.classList.add("text-center")
+    // header appeneded to its own div
     h2DivEl.appendChild(cityH2El);
 
-    let rightDivEl = document.createElement('div');
-    // end of city header
-    
-    // current day description
-    let headerDivEl = document.createElement('div');
-    headerDivEl.classList.add("flex");
-    headerDivEl.classList.add("justify-center");
+    // a div to hold the current weather icon
+    let iconDivEl = document.createElement('div');
 
+    // flexbox to hold the header and icon beside each other
+    let headerFlexDiv = document.createElement('div');
+    headerFlexDiv.classList.add("flex");
+    headerFlexDiv.classList.add("justify-center");
+    // --------------  END City Header Els -------------- //
+    
+    // -------------- current day description -------------- //
     let descDivEl = document.createElement('div');
     descDivEl.classList.add("flex");
     descDivEl.classList.add("flex-col");
@@ -34,11 +43,9 @@ function displayWeather(cityName, currentWeather, wholeData) {
     fiveForecastDivEl.classList.add("flex");
     fiveForecastDivEl.classList.add("flex-col");
 
-    iconDateRowDivEl = document.createElement('div');
-    iconDateRowDivEl.classList.add('flex');
-
     let iconRowDivEl = document.createElement("div");
     iconRowDivEl.classList.add("flex");
+
     let dateRowDivEl = document.createElement('div');
     dateRowDivEl.classList.add('flex');
 
@@ -122,21 +129,21 @@ function displayWeather(cityName, currentWeather, wholeData) {
                 var iconImEl = document.createElement('img');
                 iconImEl.setAttribute("alt", "Image of current weather")
                 iconImEl.setAttribute("src", icon)
-                rightDivEl.appendChild(iconImEl);
+                iconDivEl.appendChild(iconImEl);
         };
     };
 
     // append all content to page
-    iconDateRowDivEl.appendChild(iconRowDivEl);
-    iconDateRowDivEl.appendChild(dateRowDivEl);
-    fiveForecastDivEl.appendChild(iconDateRowDivEl);
+    headerFlexDiv.appendChild(h2DivEl);
+    headerFlexDiv.appendChild(iconDivEl);
+
+    currentWeatherDiv.appendChild(headerFlexDiv);
+    currentWeatherDiv.appendChild(descDivEl);
+
+    fiveForecastDivEl.appendChild(iconRowDivEl);
+    fiveForecastDivEl.appendChild(dateRowDivEl);
     fiveForecastDivEl.appendChild(infoRowDivEl);
 
-    headerDivEl.appendChild(h2DivEl);
-    headerDivEl.appendChild(rightDivEl);
-
-    currentWeatherDiv.appendChild(headerDivEl);
-    currentWeatherDiv.appendChild(descDivEl);
     currentWeatherDiv.appendChild(fiveForecastDivEl);
 };
 
@@ -145,6 +152,7 @@ function getWeather(initData, lat, lon){
     fetch(weatherApiLink).then(function(response){
         if(response.ok){
             response.json().then(function(data){
+                console.log("-------city weather data-------")
                 console.log(data);
                 const currentWeather = data.current.weather[0];
                 const cityName = initData[0].name;
@@ -156,6 +164,10 @@ function getWeather(initData, lat, lon){
     })
 }
 
+/* adds the city name searched into the api url and fetches the data
+    if there is a resonse then it gets formated into json and json data is 
+    sent to a function when then extracts that data and populates elements with it dynamically 
+    onto the page*/
 function getCity(event){
     event.preventDefault();
     let cityCap = cityInputEl.value.toLowerCase();
@@ -165,6 +177,7 @@ function getCity(event){
     .then(function(response){
         if (response.ok){
             response.json().then(function(data){
+                console.log("--------full fetched data-------")
                 console.log(data)
                 getWeather(data, data[0].lat, data[0].lon) //display city weather data
             })
@@ -174,6 +187,7 @@ function getCity(event){
     })
 }
 
+// event listener that fires when a city name is searched
 cityInputButtonEl.addEventListener("click", getCity)
 
 //Local storage add 5 most recent searches
