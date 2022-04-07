@@ -104,16 +104,20 @@ function displayWeather(cityName, data) {
                     break;
     
                 case "daily":
-                    for (i=0; data[property].length; i++){
-                        // sends icon code to generate an img element with icon
+                    console.log("daily")
+                    data[property].forEach((object)=>{
+                        console.log("Data[property]: " + data[property][0])
+                        console.log("Object: " + object[0])
+                        //sends icon code to generate an img element with icon
                         iconRowDivEl.appendChild(createIconEl(data[property]["icon"], "Image of weather"));
                         // sends unix time stamp to date constructor
                         dateRowDivEl.appendChild(dateConstructor(data[property]["dt"]));
-                        // end date constructor
-                    }
+                        //end date constructor
+                    });
                     break;
             }
         }
+        return
     }
     fillContent(data);
     //-------------- end of enternal function ----------- //
