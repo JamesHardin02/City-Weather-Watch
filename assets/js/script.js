@@ -1,11 +1,37 @@
-const { fill } = require("lodash");
-
 const cityInputEl = document.querySelector("#city-input");
 const cityInputButtonEl = document.querySelector("#city-input-button");
 const currentWeatherDiv = document.querySelector("#current-weather");
 
+// ----------- utility functions----------- //
+function dateConstructor(unixTimestamp){
+    const milliseconds = unixTimestamp * 1000; // 1575909015000
+    const dateObject = new Date(milliseconds);
+
+    const day = dateObject.toLocaleString("en-US", {weekday: "long"}); // Monday
+    const month = dateObject.toLocaleString("en-US", {month: "long"}); // December
+    const dayNum = dateObject.toLocaleString("en-US", {day: "numeric"}); // 9
+    const year = dateObject.toLocaleString("en-US", {year: "numeric"}); // 2022
+
+    const date = day + ", " + month + " " + dayNum + ", " + year;
+    let dateP = document.createElement("p");
+    dateP.textContent = date;
+    return dateP;
+}
+function createIconEl(iconCode, altDesc){
+    var icon = "http://openweathermap.org/img/wn/"+ iconCode +"@2x.png"
+    var iconImEl = document.createElement('img');
+    iconImEl.setAttribute("alt", altDesc);
+    iconImEl.setAttribute("src", icon);
+    return iconImEl;
+}
+
+function kelvinToFahrenheit(kelvin){
+    return Math.trunc((kelvin - 273.15) * 9/5 + 32)
+}
+// --------end utility functions---------- //
+
 // takes weather data and dynamically popualtes elements with it to then display on the page
-function displayWeather(cityName, currentWeather, wholeData) {
+function displayWeather(cityName, data) {
     /* if there are child elements in the foundation division then remove them
         this clears the page for the new search data*/
     while(currentWeatherDiv.firstChild){
@@ -38,9 +64,9 @@ function displayWeather(cityName, currentWeather, wholeData) {
     descDivEl.classList.add("flex");
     descDivEl.classList.add("flex-col");
     descDivEl.classList.add("text-base");
-    // current day description
+    // ------------current day description--------------- //
 
-    // five day forecast section
+    // --------------five day forecast section----------- //
     let fiveForecastDivEl = document.createElement("div");
     fiveForecastDivEl.classList.add("flex");
     fiveForecastDivEl.classList.add("flex-col");
@@ -53,16 +79,45 @@ function displayWeather(cityName, currentWeather, wholeData) {
 
     let infoRowDivEl = document.createElement("div");
     infoRowDivEl.classList.add("flex");
-    // end of five day forecast section 
+    //----------- end of five day forecast section ---------- //
 
-    // current day description p elements
+    // ----------current day description p elements------- //
     let pTempEl = document.createElement("p");
     let pFeelTempEl = document.createElement("p");
     let pHumidityEl = document.createElement("p");
     let pWindSpeedEl = document.createElement("p");
-
-    fillContent();
-    // append all content to page
+    // ------------- enternal function -------------//
+    function fillContent(data) {
+        // construct loop
+        for(const property in data){
+            switch(property){
+                case "current":
+                    pTempEl.textContent = "Temperature: "+ kelvinToFahrenheit(data[property]["temp"]) + "°";
+                    pFeelTempEl.textContent = "Feels like: "+ kelvinToFahrenheit(data[property]["feels_like"]) + "°";
+                    pHumidityEl.textContent = "Humidity: " + data[property]["humidity"] + "%"
+                    pWindSpeedEl.textContent = "Wind speed: " + data[property]["wind_speed"] + "mph"
+                    //append CURRENT weather loop
+                    var pDescEl = document.createElement("p");
+                    pDescEl.textContent = `${data[property]["weather"][0]["description"]}`;
+                    descDivEl.append(pDescEl, pTempEl, pFeelTempEl, pHumidityEl, pWindSpeedEl);
+                    iconDivEl.appendChild(createIconEl(data[property]["weather"][0]["icon"],"Image of current weather"));
+                    break;
+    
+                case "daily":
+                    for (i=0; data[property].length; i++){
+                        // sends icon code to generate an img element with icon
+                        iconRowDivEl.appendChild(createIconEl(data[property]["icon"], "Image of weather"));
+                        // sends unix time stamp to date constructor
+                        dateRowDivEl.appendChild(dateConstructor(data[property]["dt"]));
+                        // end date constructor
+                    }
+                    break;
+            }
+        }
+    }
+    fillContent(data);
+    //-------------- end of enternal function ----------- //
+    // ---------append all content to page---------- //
     headerFlexDiv.appendChild(h2DivEl);
     headerFlexDiv.appendChild(iconDivEl);
 
@@ -76,86 +131,23 @@ function displayWeather(cityName, currentWeather, wholeData) {
     currentWeatherDiv.appendChild(fiveForecastDivEl);
 };
 
-function createIconEl(iconCode){
-    var icon = "http://openweathermap.org/img/wn/"+ iconCode +"@2x.png"
-    var iconImEl = document.createElement('img');
-    iconImEl.setAttribute("alt", "Image of weather");
-    iconImEl.setAttribute("src", icon);
-    iconRowDivEl.appendChild(iconImEl);
-}
-
-function fillContent(kelvinToFahrenheit) {
-    // construct loop
-    for(const property in wholeData){
-        console.log(property);
-        switch(property){
-            case "current":
-                pTempEl.textContent = "Temperature: "+ kelvinToFahrenheit(wholeData[property]["temp"]) + "°";
-                pFeelTempEl.textContent = "Feels like: "+ kelvinToFahrenheit(wholeData[property]["feels_like"]) + "°";
-                pHumidityEl.textContent = "Humidity: " + wholeData[property]["humidity"] + "%"
-                pWindSpeedEl.textContent = "Wind speed: " + wholeData[property]["wind_speed"] + "mph"
-
-                createIconEl(property["weather"]["icon"]);
-                break;
-
-            case "daily":
-                console.log(wholeData[property])
-                for (i=0; wholeData[property].length; i++){
-                    // icon getter
-                    createIconEl(wholeData[property]["icon"]);
-                    var icon = "http://openweathermap.org/img/wn/"+ weatherData["icon"] +"@2x.png"
-                    var iconImEl = document.createElement('img');
-                    iconImEl.setAttribute("alt", "Image of weather");
-                    iconImEl.setAttribute("src", icon);
-                    iconRowDivEl.appendChild(iconImEl);
-                    // date constructor
-                    const unixTimestamp = wholeData[property]["dt"];
-
-                    const milliseconds = unixTimestamp * 1000; // 1575909015000
-
-                    const dateObject = new Date(milliseconds);
-
-                    const day = dateObject.toLocaleString("en-US", {weekday: "long"}); // Monday
-                    const month = dateObject.toLocaleString("en-US", {month: "long"}); // December
-                    const dayNum = dateObject.toLocaleString("en-US", {day: "numeric"}); // 9
-                    const year = dateObject.toLocaleString("en-US", {year: "numeric"}); // 2022
-
-                    const date = day + ", " + month + " " + dayNum + ", " + year;
-                    let dateP = document.createElement("p");
-                    dateP.textContent = date;
-                    dateRowDivEl.appendChild(dateP);
-                    // end date constructor 
-                    break;
-
-                }
+// call back function
+function getCity(initData, lat, lon){
+    const weatherApiLink = "https://api.openweathermap.org/data/2.5/onecall?lat="+ lat +"&lon="+ lon +"&appid=33e105b40a9be724f9c8bf226184c956";
+    fetch(weatherApiLink).then(function(response){
+        if(response.ok){
+            response.json().then(function(cityData){
+                console.log("--------initial fetched data-------")
+                console.log(initData)
+                console.log("-------city weather data-------")
+                console.log(cityData);
+                const cityName = initData[0].name;
+                displayWeather(cityName, cityData);
+            })
+        }else{
+            alert("Error, no weather data for coordinates")
         }
-    }
-
-    //append CURRENT weather loop
-    for(const property in currentWeather){
-        switch (property){
-            case "description":
-                var pDescEl = document.createElement("p");
-                pDescEl.textContent = `${currentWeather[property]}`;
-                descDivEl.appendChild(pDescEl);
-                descDivEl.appendChild(pTempEl);
-                descDivEl.appendChild(pFeelTempEl);
-                descDivEl.appendChild(pHumidityEl);
-                descDivEl.appendChild(pWindSpeedEl);
-                break;
-            case "icon":
-                var icon = "http://openweathermap.org/img/wn/"+ currentWeather[property] +"@2x.png"
-                var iconImEl = document.createElement('img');
-                iconImEl.setAttribute("alt", "Image of current weather")
-                iconImEl.setAttribute("src", icon)
-                iconDivEl.appendChild(iconImEl);
-        };
-    };
-
-}
-
-function kelvinToFahrenheit(kelvin){
-    return Math.trunc((kelvin - 273.15) * 9/5 + 32)
+    })
 }
 
 /* adds the city name searched into the api url and fetches the data
@@ -175,12 +167,7 @@ function getWeather(event){
     .then(function(response){
         if (response.ok){
             response.json().then(function(data){
-                console.log("--------initial fetched data-------")
-                console.log(data)
-                let cityData = getCity(data, data[0].lat, data[0].lon) //display city weather data
-                console.log("-------city weather data-------")
-                console.log(cityData);
-                
+                getCity(data, data[0].lat, data[0].lon) //display city weather data
             })
         }else{
             alert("Not valid city")
@@ -188,22 +175,7 @@ function getWeather(event){
     })
 }
 
-// call back function
-function getCity(initData, lat, lon){
-    const weatherApiLink = "https://api.openweathermap.org/data/2.5/onecall?lat="+ lat +"&lon="+ lon +"&appid=33e105b40a9be724f9c8bf226184c956";
-    fetch(weatherApiLink).then(function(response){
-        if(response.ok){
-            response.json().then(function(data){
-                return data;
-                // const currentWeather = data.current.weather[0];
-                // const cityName = initData[0].name;
-                // displayWeather(cityName, currentWeather, data);
-            })
-        }else{
-            alert("Error, no weather data for coordinates")
-        }
-    })
-}
+
 
 // event listener that fires when a city name is searched
 cityInputButtonEl.addEventListener("click", getWeather)
