@@ -67,18 +67,12 @@ function displayWeather(cityName, data) {
     // ------------current day description--------------- //
 
     // --------------five day forecast section----------- //
-    let fiveForecastDivEl = document.createElement("div");
-    fiveForecastDivEl.classList.add("flex");
-    fiveForecastDivEl.classList.add("flex-col");
-
-    let iconRowDivEl = document.createElement("div");
-    iconRowDivEl.classList.add("flex");
-
-    let dateRowDivEl = document.createElement('div');
-    dateRowDivEl.classList.add('flex');
-
-    let infoRowDivEl = document.createElement("div");
-    infoRowDivEl.classList.add("flex");
+    let eigthtDayFlexBox = document.createElement('div');
+    eigthtDayFlexBox.classList.add('flex');
+    eigthtDayFlexBox.classList.add('mx-auto');
+    let eightDayDivEl = document.createElement("div");
+    eightDayDivEl.classList.add("flex"); 
+    eightDayDivEl.classList.add('mx-auto');
     //----------- end of five day forecast section ---------- //
 
     // ----------current day description p elements------- //
@@ -105,23 +99,28 @@ function displayWeather(cityName, data) {
     
                 case "daily":
                     console.log("daily")
-                    data[property].forEach((object)=>{
-                        console.log("Data[property]: " + data[property])
-                        console.log("Object: " + object)
+                    data[property].forEach((object) => {
+                        let dayContainer = document.createElement('div');
+                        dayContainer.classList.add('flex');
+                        dayContainer.classList.add('flex-col');
+                        dayContainer.classList.add('border-4');
+                        dayContainer.classList.add('border-black');
+                        dayContainer.classList.add('text-center');
+                        dayContainer.classList.add('bg-cyan-100')
                         for (const subproperty in object){
                             console.log(subproperty)
                             switch(subproperty){
                                 case "weather":
                                     //sends icon code to generate an img element with icon
-                                    iconRowDivEl.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather"));
+                                    dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather"));
                                     break;
                                 case "dt":
                                     // sends unix time stamp to date constructor
-                                    dateRowDivEl.appendChild(dateConstructor(object[subproperty]));
+                                    dayContainer.appendChild(dateConstructor(object[subproperty]));
                                     break;
                             }   
-                            
                         }
+                        eightDayDivEl.appendChild(dayContainer);
                     });
                     break;
             }
@@ -136,12 +135,8 @@ function displayWeather(cityName, data) {
 
     currentWeatherDiv.appendChild(headerFlexDiv);
     currentWeatherDiv.appendChild(descDivEl);
-
-    fiveForecastDivEl.appendChild(iconRowDivEl);
-    fiveForecastDivEl.appendChild(dateRowDivEl);
-    fiveForecastDivEl.appendChild(infoRowDivEl);
-
-    currentWeatherDiv.appendChild(fiveForecastDivEl);
+    eigthtDayFlexBox.appendChild(eightDayDivEl);
+    currentWeatherDiv.appendChild(eigthtDayFlexBox);
 };
 
 // call back function

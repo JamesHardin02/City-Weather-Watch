@@ -594,6 +594,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   /* 24px */
 }
 
+.border-4{
+  border-width: 1px;
+}
+
+.border-black{
+  border-color: rgb(0 0 0);
+}
+
+.bg-cyan-100{
+  background-color: rgb(99,102,241);
+}
+
 @media (min-width: 768px) {
   .md\:h-32 {
     height: 8rem;
