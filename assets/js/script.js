@@ -106,13 +106,22 @@ function displayWeather(cityName, data) {
                 case "daily":
                     console.log("daily")
                     data[property].forEach((object)=>{
-                        console.log("Data[property]: " + data[property][0])
-                        console.log("Object: " + object[0])
-                        //sends icon code to generate an img element with icon
-                        iconRowDivEl.appendChild(createIconEl(data[property]["icon"], "Image of weather"));
-                        // sends unix time stamp to date constructor
-                        dateRowDivEl.appendChild(dateConstructor(data[property]["dt"]));
-                        //end date constructor
+                        console.log("Data[property]: " + data[property])
+                        console.log("Object: " + object)
+                        for (const subproperty in object){
+                            console.log(subproperty)
+                            switch(subproperty){
+                                case "weather":
+                                    //sends icon code to generate an img element with icon
+                                    iconRowDivEl.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather"));
+                                    break;
+                                case "dt":
+                                    // sends unix time stamp to date constructor
+                                    dateRowDivEl.appendChild(dateConstructor(object[subproperty]));
+                                    break;
+                            }   
+                            
+                        }
                     });
                     break;
             }
