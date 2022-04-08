@@ -483,6 +483,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(99 102 241 / var(--tw-bg-opacity));
 }
 
+/* dynamic components */
+
 .h2-styling {
   font-size: 3rem;
   line-height: 1;
@@ -503,8 +505,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .current-desc-div {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   font-size: 1rem;
   line-height: 1.5rem;
@@ -517,6 +517,38 @@ Ensure the default browser behavior of the `hidden` attribute.
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
+}
+
+.fxcol {
+  display: flex;
+  flex-direction: column;
+}
+
+.current-day-box {
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .current-day-box {
+    align-self: flex-start;
+  }
+}
+
+.eight-day-box {
+  justify-content: center;
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.day-container {
+  width: 100%;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(165 180 252 / var(--tw-bg-opacity));
+  text-align: center;
 }
 
 /* @layer components{custom style a component via utility classes*/
@@ -646,8 +678,6 @@ Ensure the default browser behavior of the `hidden` attribute.
                         !-> MUST DEFINE @variants ->for ex: @variants hover,focus{
                             .p-21{padding 5.5rem;}
                         }*/
-
-/* flex col */
 
 @media (min-width: 475px) {
   .xs\:text-4xl {

@@ -21,7 +21,11 @@ module.exports = {
     'flex-items-center',
     'h2-styling',
     'city-header-box',
-    'current-desc-div'
+    'current-desc-div',
+    'fxcol',
+    'current-day-box',
+    'eight-day-box',
+    'day-container'
   ],
   theme: {
     screens:{
