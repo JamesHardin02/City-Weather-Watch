@@ -1,4 +1,5 @@
 const colors = require('tailwindcss/colors')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   content: ["./index.html"],
@@ -8,6 +9,7 @@ module.exports = {
     'justify-center',
     'text-base',
     'md:text-xl',
+    'text-5xl',
     'border-2',
     'border-black',
     'text-center',
@@ -15,10 +17,13 @@ module.exports = {
     'w-full',
     'lg:self-start',
     'shadow-lg',
-    'text-indigo-600',
-    'text-indigo-700'
+    'text-stone-700'
   ],
   theme: {
+    screens:{
+      'xs': '475px',
+      ...defaultTheme.screens
+    },
     color: {
       transparent: 'transparent',
       current: 'currentColor',

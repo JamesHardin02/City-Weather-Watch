@@ -48,7 +48,7 @@ function displayWeather(cityName, data) {
     cityH2El.textContent = cityName;
     cityH2El.classList.add("text-5xl");
     cityH2El.classList.add("md:text-6xl");
-    cityH2El.classList.add('text-indigo-600')
+    cityH2El.classList.add('text-stone-700')
     // header appeneded to its own div
     h2DivEl.appendChild(cityH2El);
 
@@ -66,7 +66,7 @@ function displayWeather(cityName, data) {
     descDivEl.classList.add("text-base");
     descDivEl.classList.add('md:text-xl');
     descDivEl.classList.add('items-center');
-    descDivEl.classList.add('text-indigo-700')
+    descDivEl.classList.add('text-stone-700')
     // ------------current day description--------------- //
 
     // ------------ current day div --------------//
