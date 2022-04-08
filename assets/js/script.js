@@ -41,12 +41,13 @@ function displayWeather(cityName, data) {
     // -------------- City Header Els -------------- //
     // div element that will hold the h2 of the city name
     let h2DivEl = document.createElement('div');
-
+    h2DivEl.classList.add('flex');
+    h2DivEl.classList.add('items-center')
     // header for the name of the city searched
     const cityH2El = document.createElement("h2")
     cityH2El.textContent = cityName;
-    cityH2El.classList.add("text-lg")
-    cityH2El.classList.add("text-center")
+    cityH2El.classList.add("text-5xl");
+    cityH2El.classList.add("md:text-7xl")
     // header appeneded to its own div
     h2DivEl.appendChild(cityH2El);
 

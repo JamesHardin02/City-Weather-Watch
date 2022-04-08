@@ -509,12 +509,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 10rem;
   flex: 0 1 auto;
   --tw-bg-opacity: 1;
-  background-color: rgb(147 197 253 / var(--tw-bg-opacity));
+  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
 }
 
 .btn:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+  background-color: rgb(236 110 76 / var(--tw-bg-opacity));
 }
 
 /* @layer components{custom style a component via utility classes*/
@@ -552,6 +552,32 @@ Ensure the default browser behavior of the `hidden` attribute.
   gap: 1.25rem;
 }
 
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.border-2 {
+  border-width: 2px;
+}
+
+.border-b-4 {
+  border-bottom-width: 4px;
+}
+
+.border-b-8 {
+  border-bottom-width: 8px;
+}
+
+.border-orange-450 {
+  --tw-border-opacity: 1;
+  border-color: rgb(236 110 76 / var(--tw-border-opacity));
+}
+
+.border-b-orange-450 {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(236 110 76 / var(--tw-border-opacity));
+}
+
 .bg-neutral-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(115 115 115 / var(--tw-bg-opacity));
@@ -560,6 +586,21 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-indigo-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(99 102 241 / var(--tw-bg-opacity));
+}
+
+.bg-indigo-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 48 163 / var(--tw-bg-opacity));
+}
+
+.bg-indigo-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(49 46 129 / var(--tw-bg-opacity));
+}
+
+.bg-indigo-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(199 210 254 / var(--tw-bg-opacity));
 }
 
 .text-center {

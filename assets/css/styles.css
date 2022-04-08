@@ -7,6 +7,6 @@
 
 @layer components{
     .btn{
-        @apply bg-blue-300 hover:bg-blue-500 flex-initial w-40 h-20
+        @apply bg-indigo-500 hover:bg-orange-450 flex-initial w-40 h-20
     }
 }
