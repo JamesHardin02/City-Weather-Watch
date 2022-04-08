@@ -48,6 +48,7 @@ function displayWeather(cityName, data) {
     cityH2El.textContent = cityName;
     cityH2El.classList.add("text-5xl");
     cityH2El.classList.add("md:text-6xl");
+    cityH2El.classList.add('text-indigo-600')
     // header appeneded to its own div
     h2DivEl.appendChild(cityH2El);
 
@@ -63,8 +64,9 @@ function displayWeather(cityName, data) {
     descDivEl.classList.add("flex");
     descDivEl.classList.add("flex-col");
     descDivEl.classList.add("text-base");
-    descDivEl.classList.add('md:text-lg');
+    descDivEl.classList.add('md:text-xl');
     descDivEl.classList.add('items-center');
+    descDivEl.classList.add('text-indigo-700')
     // ------------current day description--------------- //
 
     // ------------ current day div --------------//
@@ -72,6 +74,7 @@ function displayWeather(cityName, data) {
     currentDayFlexBox.classList.add('flex');
     currentDayFlexBox.classList.add('flex-col');
     currentDayFlexBox.classList.add('mb-6');
+    currentDayFlexBox.classList.add('lg:self-start')
     // ------------ current day div ---------//
 
     // --------------  END City Header+DESC Els -------------- //
@@ -79,10 +82,14 @@ function displayWeather(cityName, data) {
     // --------------five day forecast section----------- //
     let eigthtDayFlexBox = document.createElement('div');
     eigthtDayFlexBox.classList.add('flex');
+    eigthtDayFlexBox.classList.add('flex-col');
     eigthtDayFlexBox.classList.add('justify-center');
+    eigthtDayFlexBox.classList.add('shadow-lg');
 
-    let eightDayDivEl = document.createElement("div");
-    eightDayDivEl.classList.add("flex"); 
+    let topEightDayDivEl = document.createElement("div");
+    topEightDayDivEl.classList.add("flex"); 
+    let bottomEightDayDivEl = document.createElement('div');
+    bottomEightDayDivEl.classList.add('flex');
     //----------- end of five day forecast section ---------- //
 
     // ----------current day description p elements------- //
@@ -92,7 +99,8 @@ function displayWeather(cityName, data) {
     let pWindSpeedEl = document.createElement("p");
     // ------------- enternal function -------------//
     function fillContent(data) {
-        // construct loop
+        // construct loop                        
+        let i = 0
         for(const property in data){
             switch(property){
                 case "current":
@@ -108,8 +116,8 @@ function displayWeather(cityName, data) {
                     break;
     
                 case "daily":
-                    console.log("daily")
                     data[property].forEach((object) => {
+                        i++
                         let dayContainer = document.createElement('div');
                         dayContainer.classList.add('flex');
                         dayContainer.classList.add('flex-col');
@@ -117,20 +125,35 @@ function displayWeather(cityName, data) {
                         dayContainer.classList.add('border-black');
                         dayContainer.classList.add('text-center');
                         dayContainer.classList.add('bg-indigo-300')
+                        dayContainer.classList.add('w-full')
                         for (const subproperty in object){
-                            console.log(subproperty)
                             switch(subproperty){
                                 case "weather":
                                     //sends icon code to generate an img element with icon
-                                    dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather"));
+                                    if(i <= 4){
+                                        dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather"));
+                                        topEightDayDivEl.appendChild(dayContainer);
+                                    }else{
+                                        dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather"));
+                                        bottomEightDayDivEl.appendChild(dayContainer)
+                                    }
+                                    
                                     break;
                                 case "dt":
                                     // sends unix time stamp to date constructor
-                                    dayContainer.appendChild(dateConstructor(object[subproperty]));
+                                    if(i <= 4){
+                                        dayContainer.appendChild(dateConstructor(object[subproperty]));
+                                        topEightDayDivEl.appendChild(dayContainer);
+                                    }else{
+                                        dayContainer.appendChild(dateConstructor(object[subproperty]));
+                                        bottomEightDayDivEl.appendChild(dayContainer)
+                                    }
+                                    
                                     break;
                             }   
                         }
-                        eightDayDivEl.appendChild(dayContainer);
+
+
                     });
                     break;
             }
@@ -144,7 +167,8 @@ function displayWeather(cityName, data) {
     currentDayFlexBox.appendChild(headerFlexDiv);
     currentDayFlexBox.appendChild(descDivEl);
 
-    eigthtDayFlexBox.appendChild(eightDayDivEl);
+    eigthtDayFlexBox.appendChild(topEightDayDivEl);
+    eigthtDayFlexBox.appendChild(bottomEightDayDivEl);
 
     currentWeatherDiv.appendChild(currentDayFlexBox);
     currentWeatherDiv.appendChild(eigthtDayFlexBox);

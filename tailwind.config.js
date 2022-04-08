@@ -7,11 +7,16 @@ module.exports = {
     'md:text-6xl',
     'justify-center',
     'text-base',
-    'md:text-lg',
+    'md:text-xl',
     'border-2',
     'border-black',
     'text-center',
-    'bg-indigo-300'
+    'bg-indigo-300',
+    'w-full',
+    'lg:self-start',
+    'shadow-lg',
+    'text-indigo-600',
+    'text-indigo-700'
   ],
   theme: {
     color: {
