@@ -18,10 +18,10 @@
         @apply text-5xl md:text-6xl text-stone-700
     }
     .city-header-box{
-        @apply flex mt-5
+        @apply flex mt-5 lg:mr-5 lg:ml-4
     }
-    .current-desc-div{
-        @apply text-base md:text-xl items-center text-stone-700
+    .default-text{
+        @apply text-xl items-center text-stone-700
     }
     .fxcol{
         @apply flex flex-col

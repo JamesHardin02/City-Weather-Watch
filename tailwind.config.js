@@ -21,7 +21,7 @@ module.exports = {
     'flex-items-center',
     'h2-styling',
     'city-header-box',
-    'current-desc-div',
+    'default-text',
     'fxcol',
     'current-day-box',
     'eight-day-box',

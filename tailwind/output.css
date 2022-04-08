@@ -504,19 +504,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: flex;
 }
 
-.current-desc-div {
-  align-items: center;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  --tw-text-opacity: 1;
-  color: rgb(68 64 60 / var(--tw-text-opacity));
+@media (min-width: 1024px) {
+  .city-header-box {
+    margin-right: 1.25rem;
+  }
+
+  .city-header-box {
+    margin-left: 1rem;
+  }
 }
 
-@media (min-width: 768px) {
-  .current-desc-div {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
+.default-text {
+  align-items: center;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  color: rgb(68 64 60 / var(--tw-text-opacity));
 }
 
 .fxcol {

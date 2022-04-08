@@ -13,7 +13,7 @@ function generateWeatherInfoEl(data, purpose){
             case "current":
                 let cElContainer = document.createElement('div');
                 cElContainer.classList.add('fxcol');
-                cElContainer.classList.add('current-desc-div');
+                cElContainer.classList.add('default-text');
 
                 let cpDescEl = document.createElement('p');
                 cpDescEl.textContent = data["weather"][0]["description"];
@@ -33,7 +33,7 @@ function generateWeatherInfoEl(data, purpose){
             case "eightDay":
                 let edElContainer = document.createElement('div');
                 edElContainer.classList.add('fxcol');
-                edElContainer.classList.add('current-desc-div');
+                edElContainer.classList.add('default-text');
 
                 let edpDescEl = document.createElement('p');
                 edpDescEl.textContent = data["weather"][0]["description"];
@@ -60,6 +60,7 @@ function dateConstructor(unixTimestamp){
 
     const date = day + ", " + month + " " + dayNum + ", " + year;
     let dateP = document.createElement("p");
+    dateP.classList.add('default-text')
     dateP.textContent = date;
     return dateP;
 }
@@ -100,7 +101,7 @@ function displayWeather(cityName, data) {
     
     // -------------- current day description div+p els -------------- //
     let descDivEl = document.createElement('div');
-    descDivEl.classList.add("current-desc-div");
+    descDivEl.classList.add("default-text");
     descDivEl.classList.add('fxcol');
     // ----------current day description p elements------- //
     // ------------ end of current day description div+p els--------------- //
