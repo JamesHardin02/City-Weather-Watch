@@ -23,11 +23,11 @@ function createIconEl(iconCode, altDesc){
     iconImEl.setAttribute("alt", altDesc);
     iconImEl.setAttribute("src", icon);
     return iconImEl;
-}
+};
 
 function kelvinToFahrenheit(kelvin){
-    return Math.trunc((kelvin - 273.15) * 9/5 + 32)
-}
+    return Math.trunc((kelvin - 273.15) * 9/5 + 32);
+};
 // --------end utility functions---------- //
 
 // takes weather data and dynamically popualtes elements with it to then display on the page
@@ -38,16 +38,16 @@ function displayWeather(cityName, data) {
         currentWeatherDiv.firstChild.remove();
     };
 
-    // -------------- City Header Els -------------- //
+    // -------------- City Header + DESC Els -------------- //
     // div element that will hold the h2 of the city name
     let h2DivEl = document.createElement('div');
     h2DivEl.classList.add('flex');
-    h2DivEl.classList.add('items-center')
+    h2DivEl.classList.add('items-center');
     // header for the name of the city searched
-    const cityH2El = document.createElement("h2")
+    const cityH2El = document.createElement("h2");
     cityH2El.textContent = cityName;
     cityH2El.classList.add("text-5xl");
-    cityH2El.classList.add("md:text-7xl")
+    cityH2El.classList.add("md:text-6xl");
     // header appeneded to its own div
     h2DivEl.appendChild(cityH2El);
 
@@ -57,20 +57,30 @@ function displayWeather(cityName, data) {
     // flexbox to hold the header and icon beside each other
     let headerFlexDiv = document.createElement('div');
     headerFlexDiv.classList.add("flex");
-    headerFlexDiv.classList.add("justify-center");
-    // --------------  END City Header Els -------------- //
     
     // -------------- current day description -------------- //
     let descDivEl = document.createElement('div');
     descDivEl.classList.add("flex");
     descDivEl.classList.add("flex-col");
     descDivEl.classList.add("text-base");
+    descDivEl.classList.add('md:text-lg');
+    descDivEl.classList.add('items-center');
     // ------------current day description--------------- //
+
+    // ------------ current day div --------------//
+    let currentDayFlexBox = document.createElement('div');
+    currentDayFlexBox.classList.add('flex');
+    currentDayFlexBox.classList.add('flex-col');
+    currentDayFlexBox.classList.add('mb-6');
+    // ------------ current day div ---------//
+
+    // --------------  END City Header+DESC Els -------------- //
 
     // --------------five day forecast section----------- //
     let eigthtDayFlexBox = document.createElement('div');
     eigthtDayFlexBox.classList.add('flex');
     eigthtDayFlexBox.classList.add('justify-center');
+
     let eightDayDivEl = document.createElement("div");
     eightDayDivEl.classList.add("flex"); 
     //----------- end of five day forecast section ---------- //
@@ -103,10 +113,10 @@ function displayWeather(cityName, data) {
                         let dayContainer = document.createElement('div');
                         dayContainer.classList.add('flex');
                         dayContainer.classList.add('flex-col');
-                        dayContainer.classList.add('border-4');
+                        dayContainer.classList.add('border-2');
                         dayContainer.classList.add('border-black');
                         dayContainer.classList.add('text-center');
-                        dayContainer.classList.add('bg-cyan-100')
+                        dayContainer.classList.add('bg-indigo-300')
                         for (const subproperty in object){
                             console.log(subproperty)
                             switch(subproperty){
@@ -131,10 +141,12 @@ function displayWeather(cityName, data) {
     // ---------append all content to page---------- //
     headerFlexDiv.appendChild(h2DivEl);
     headerFlexDiv.appendChild(iconDivEl);
+    currentDayFlexBox.appendChild(headerFlexDiv);
+    currentDayFlexBox.appendChild(descDivEl);
 
-    currentWeatherDiv.appendChild(headerFlexDiv);
-    currentWeatherDiv.appendChild(descDivEl);
     eigthtDayFlexBox.appendChild(eightDayDivEl);
+
+    currentWeatherDiv.appendChild(currentDayFlexBox);
     currentWeatherDiv.appendChild(eigthtDayFlexBox);
 };
 
