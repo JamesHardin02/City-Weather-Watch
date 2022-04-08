@@ -483,11 +483,51 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(99 102 241 / var(--tw-bg-opacity));
 }
 
+.h2-styling {
+  font-size: 3rem;
+  line-height: 1;
+  --tw-text-opacity: 1;
+  color: rgb(68 64 60 / var(--tw-text-opacity));
+}
+
+@media (min-width: 768px) {
+  .h2-styling {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+}
+
+.city-header-box {
+  margin-top: 1.25rem;
+  display: flex;
+}
+
+.current-desc-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(68 64 60 / var(--tw-text-opacity));
+}
+
+@media (min-width: 768px) {
+  .current-desc-div {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
 /* @layer components{custom style a component via utility classes*/
 
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
 }
 
 .mb-6 {
@@ -606,6 +646,8 @@ Ensure the default browser behavior of the `hidden` attribute.
                         !-> MUST DEFINE @variants ->for ex: @variants hover,focus{
                             .p-21{padding 5.5rem;}
                         }*/
+
+/* flex col */
 
 @media (min-width: 475px) {
   .xs\:text-4xl {

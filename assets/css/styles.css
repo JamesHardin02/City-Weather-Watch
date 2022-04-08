@@ -1,12 +1,27 @@
+
+
 @tailwind base; /* @layer base {overwrite default element styling}*/
 @tailwind components; /* @layer components{custom style a component via utility classes*/
 @tailwind utilities; /* @layer ultities{Create custom ulitily classes 
                         !-> MUST DEFINE @variants ->for ex: @variants hover,focus{
                             .p-21{padding 5.5rem;}
                         }*/
-
 @layer components{
     .btn{
         @apply hover:bg-indigo-500 bg-orange-450 flex-initial w-40 h-20
     }
+
+    .flex-items-centered{
+        @apply flex items-center
+    }
+    .h2-styling{
+        @apply text-5xl md:text-6xl text-stone-700
+    }
+    .city-header-box{
+        @apply flex mt-5
+    }
+    .current-desc-div{
+        @apply flex flex-col text-base md:text-xl items-center text-stone-700
+    }
 }
+/* flex col */

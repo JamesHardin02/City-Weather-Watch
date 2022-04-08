@@ -41,14 +41,11 @@ function displayWeather(cityName, data) {
     // -------------- City Header + DESC Els -------------- //
     // div element that will hold the h2 of the city name
     let h2DivEl = document.createElement('div');
-    h2DivEl.classList.add('flex');
-    h2DivEl.classList.add('items-center');
+    h2DivEl.classList.add('flex-items-center');
     // header for the name of the city searched
     const cityH2El = document.createElement("h2");
     cityH2El.textContent = cityName;
-    cityH2El.classList.add("text-5xl");
-    cityH2El.classList.add("md:text-6xl");
-    cityH2El.classList.add('text-stone-700')
+    cityH2El.classList.add("h2-styling");
     // header appeneded to its own div
     h2DivEl.appendChild(cityH2El);
 
@@ -57,16 +54,11 @@ function displayWeather(cityName, data) {
 
     // flexbox to hold the header and icon beside each other
     let headerFlexDiv = document.createElement('div');
-    headerFlexDiv.classList.add("flex");
+    headerFlexDiv.classList.add("city-header-box");
     
     // -------------- current day description -------------- //
     let descDivEl = document.createElement('div');
-    descDivEl.classList.add("flex");
-    descDivEl.classList.add("flex-col");
-    descDivEl.classList.add("text-base");
-    descDivEl.classList.add('md:text-xl');
-    descDivEl.classList.add('items-center');
-    descDivEl.classList.add('text-stone-700')
+    descDivEl.classList.add("current-desc-div");
     // ------------current day description--------------- //
 
     // ------------ current day div --------------//

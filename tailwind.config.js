@@ -17,7 +17,11 @@ module.exports = {
     'w-full',
     'lg:self-start',
     'shadow-lg',
-    'text-stone-700'
+    'text-stone-700',
+    'flex-items-center',
+    'h2-styling',
+    'city-header-box',
+    'current-desc-div'
   ],
   theme: {
     screens:{
