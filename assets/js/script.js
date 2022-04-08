@@ -69,10 +69,9 @@ function displayWeather(cityName, data) {
     // --------------five day forecast section----------- //
     let eigthtDayFlexBox = document.createElement('div');
     eigthtDayFlexBox.classList.add('flex');
-    eigthtDayFlexBox.classList.add('mx-auto');
+    eigthtDayFlexBox.classList.add('justify-center');
     let eightDayDivEl = document.createElement("div");
     eightDayDivEl.classList.add("flex"); 
-    eightDayDivEl.classList.add('mx-auto');
     //----------- end of five day forecast section ---------- //
 
     // ----------current day description p elements------- //
@@ -125,7 +124,6 @@ function displayWeather(cityName, data) {
                     break;
             }
         }
-        return
     }
     fillContent(data);
     //-------------- end of enternal function ----------- //

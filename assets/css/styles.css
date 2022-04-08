@@ -10,25 +10,3 @@
         @apply bg-blue-300 hover:bg-blue-500 flex-initial w-40 h-20
     }
 }
-
-.text-lg{
-    font-size: 3.75rem; /* 60px */
-    line-height: 1;
-}
-
-.text-base{
-    font-size: 2rem; /* 16px */
-    line-height: 2.3rem; /* 24px */
-}
-
-.border-4{
-    border-width: 1px;
-}
-
-.border-black{
-    border-color: rgb(0 0 0);
-}
-
-.bg-cyan-100{
-    background-color: rgb(99,102,241);
-}
