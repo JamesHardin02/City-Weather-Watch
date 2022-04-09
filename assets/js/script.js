@@ -7,6 +7,12 @@ function kelvinToFahrenheit(kelvin){
     return Math.trunc((kelvin - 273.15) * 9/5 + 32);
 };
 
+function uviWarningCode(index){
+    if (index <= 2) {
+        //green
+    } //etc.
+}
+
 function generateWeatherInfoEl(data, purpose){
     for(const property in data){
         switch(purpose){
@@ -16,7 +22,7 @@ function generateWeatherInfoEl(data, purpose){
                 cElContainer.classList.add('default-text');
 
                 let rightNowText = document.createElement('p');
-                rightNowText.textContent = "Weather right now:"
+                rightNowText.textContent = "Weather right now:";
                 let cpDescEl = document.createElement('p');
                 cpDescEl.textContent = data["weather"][0]["description"];
                 let pTempEl = document.createElement('p');
@@ -24,10 +30,12 @@ function generateWeatherInfoEl(data, purpose){
                 let pFeelTempEl = document.createElement("p");
                 pFeelTempEl.textContent = "Feels like: "+ kelvinToFahrenheit(data["feels_like"]) + "°";
                 let pHumidityEl = document.createElement("p");
-                pHumidityEl.textContent = "Humidity: " + data["humidity"] + "%"
+                pHumidityEl.textContent = "Humidity: " + data["humidity"] + "%";
                 let pWindSpeedEl = document.createElement("p");
-                pWindSpeedEl.textContent = "Wind speed: " + data["wind_speed"] + "mph"
-                
+                pWindSpeedEl.textContent = "Wind speed: " + data["wind_speed"] + "mph";
+                let pUviIndex = document.createElement('p');
+                pUviIndex.textContent = "UV index: " + data['uvi'];
+                pUviIndex.classList.add(uviWarningCode(data['uvi']));
 
                 cElContainer.append(rightNowText, cpDescEl, pTempEl, pFeelTempEl, pHumidityEl, pWindSpeedEl);
                 //append CURRENT weather loop
