@@ -25,7 +25,8 @@ module.exports = {
     'fxcol',
     'current-day-box',
     'eight-day-box',
-    'day-container'
+    'day-container',
+    'w-1/2'
   ],
   theme: {
     screens:{

@@ -64,11 +64,15 @@ function dateConstructor(unixTimestamp){
     dateP.textContent = date;
     return dateP;
 }
-function createIconEl(iconCode, altDesc){
+function createIconEl(iconCode, altDesc, widthClass){
     var icon = "http://openweathermap.org/img/wn/"+ iconCode +"@2x.png"
     var iconImEl = document.createElement('img');
     iconImEl.setAttribute("alt", altDesc);
     iconImEl.setAttribute("src", icon);
+    if(widthClass){
+        console.log(widthClass)
+        iconImEl.classList.add(widthClass);
+    }
     return iconImEl;
 };
 // --------end utility functions---------- //
@@ -151,11 +155,11 @@ function displayWeather(cityName, data) {
                                 case "weather":
                                     //sends icon code to generate an img element with icon
                                     if(i <= 4){
-                                        dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather"));
+                                        dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather", 'w-1/2'));
                                         dayContainer.appendChild(generateWeatherInfoEl(object, 'eightDay'))
                                         topEightDayDivEl.appendChild(dayContainer);
                                     }else{
-                                        dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather"));
+                                        dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather", 'w-1/2'));
                                         dayContainer.appendChild(generateWeatherInfoEl(object, 'eightDay'))
                                         bottomEightDayDivEl.appendChild(dayContainer)
                                     }
