@@ -15,6 +15,8 @@ function generateWeatherInfoEl(data, purpose){
                 cElContainer.classList.add('fxcol');
                 cElContainer.classList.add('default-text');
 
+                let rightNowText = document.createElement('p');
+                rightNowText.textContent = "Weather right now:"
                 let cpDescEl = document.createElement('p');
                 cpDescEl.textContent = data["weather"][0]["description"];
                 let pTempEl = document.createElement('p');
@@ -25,8 +27,9 @@ function generateWeatherInfoEl(data, purpose){
                 pHumidityEl.textContent = "Humidity: " + data["humidity"] + "%"
                 let pWindSpeedEl = document.createElement("p");
                 pWindSpeedEl.textContent = "Wind speed: " + data["wind_speed"] + "mph"
+                
 
-                cElContainer.append(cpDescEl, pTempEl, pFeelTempEl, pHumidityEl, pWindSpeedEl);
+                cElContainer.append(rightNowText, cpDescEl, pTempEl, pFeelTempEl, pHumidityEl, pWindSpeedEl);
                 //append CURRENT weather loop
                 return cElContainer
             break;
@@ -70,8 +73,8 @@ function createIconEl(iconCode, altDesc, widthClass){
     iconImEl.setAttribute("alt", altDesc);
     iconImEl.setAttribute("src", icon);
     if(widthClass){
-        console.log(widthClass)
-        iconImEl.classList.add(widthClass);
+        iconImEl.classList.add(widthClass); // width at md breakpoint
+        iconImEl.classList.add("w-4/5") // width on small screens
     }
     return iconImEl;
 };
@@ -155,11 +158,11 @@ function displayWeather(cityName, data) {
                                 case "weather":
                                     //sends icon code to generate an img element with icon
                                     if(i <= 4){
-                                        dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather", 'w-1/2'));
+                                        dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather", 'sm:w-1/2'));
                                         dayContainer.appendChild(generateWeatherInfoEl(object, 'eightDay'))
                                         topEightDayDivEl.appendChild(dayContainer);
                                     }else{
-                                        dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather", 'w-1/2'));
+                                        dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather", 'sm:w-1/2'));
                                         dayContainer.appendChild(generateWeatherInfoEl(object, 'eightDay'))
                                         bottomEightDayDivEl.appendChild(dayContainer)
                                     }

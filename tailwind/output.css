@@ -485,6 +485,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 /* dynamic components */
 
+.default-text {
+  align-items: center;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  color: rgb(68 64 60 / var(--tw-text-opacity));
+}
+
 .h2-styling {
   font-size: 3rem;
   line-height: 1;
@@ -514,14 +522,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 
-.default-text {
-  align-items: center;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  --tw-text-opacity: 1;
-  color: rgb(68 64 60 / var(--tw-text-opacity));
-}
-
 .fxcol {
   display: flex;
   flex-direction: column;
@@ -546,6 +546,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .day-container {
   width: 100%;
+  align-items: center;
   border-width: 2px;
   --tw-border-opacity: 1;
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
@@ -581,8 +582,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 100%;
 }
 
-.w-1\/2 {
-  width: 50%;
+.w-4\/5 {
+  width: 80%;
 }
 
 .flex-initial {
@@ -665,6 +666,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1;
 }
 
+.font-bold {
+  font-weight: 700;
+}
+
 .text-indigo-100 {
   --tw-text-opacity: 1;
   color: rgb(224 231 255 / var(--tw-text-opacity));
@@ -694,6 +699,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 640px) {
+  .sm\:w-1\/2 {
+    width: 50%;
+  }
+
   .sm\:text-5xl {
     font-size: 3rem;
     line-height: 1;

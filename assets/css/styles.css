@@ -14,14 +14,14 @@
     .flex-items-centered{
         @apply flex items-center
     }
+    .default-text{
+        @apply text-lg items-center text-stone-700
+    }
     .h2-styling{
         @apply text-5xl md:text-6xl text-stone-700
     }
     .city-header-box{
         @apply flex mt-5 lg:mr-5 lg:ml-4
-    }
-    .default-text{
-        @apply text-xl items-center text-stone-700
     }
     .fxcol{
         @apply flex flex-col
@@ -33,6 +33,6 @@
         @apply justify-center shadow-lg
     }
     .day-container{
-        @apply border-2 border-black text-center bg-indigo-300 w-full
+        @apply border-2 border-black text-center bg-indigo-300 w-full items-center
     }
 }

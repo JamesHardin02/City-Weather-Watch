@@ -26,7 +26,8 @@ module.exports = {
     'current-day-box',
     'eight-day-box',
     'day-container',
-    'w-1/2'
+    'sm:w-1/2',
+    'w-4/5'
   ],
   theme: {
     screens:{
