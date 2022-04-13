@@ -1,16 +1,46 @@
 const cityInputEl = document.querySelector("#city-input");
 const cityInputButtonEl = document.querySelector("#city-input-button");
 const currentWeatherDiv = document.querySelector("#current-weather");
-const eightDayForecastEl = document.querySelector('#eight-day-forecast')
+const eightDayForecastEl = document.querySelector('#eight-day-forecast');
+const topRowBoxEl = document.querySelector('#top-row-box');
+
 // ----------- utility functions----------- //
 function kelvinToFahrenheit(kelvin){
     return Math.trunc((kelvin - 273.15) * 9/5 + 32);
 };
 
 function uviWarningCode(index){
+    divEl = document.createElement('div');
+    divEl.classList.add('flex');
+
+    pTextEl = document.createElement('p');
+    pTextEl.classList.add('pr-1');
+    pTextEl.textContent = 'UV Index:';
+
+    pUviEl = document.createElement('p');
+    pUviEl.textContent = index;
     if (index <= 2) {
         //green
-    } //etc.
+        pUviEl.classList.add('uvi-green');
+        divEl.append(pTextEl, pUviEl);
+        return divEl
+    } else if (index > 2 && index < 6){
+        pUviEl.classList.add('uvi-yellow');
+        divEl.append(pTextEl, pUviEl);
+        return divEl
+    } else if (index >= 6 && index < 8){
+        pUviEl.classList.add('uvi-orange');
+        divEl.append(pTextEl, pUviEl);
+        return divEl
+    } else if (index >= 8 && index < 11){
+        pUviEl.classList.add('uvi-red');
+        divEl.append(pTextEl, pUviEl);
+        return divEl
+    } else if (index >= 11){
+        pUviEl.classList.add('uvi-purple');
+        divEl.append(pTextEl, pUviEl);
+        return divEl
+    }
 }
 
 function generateWeatherInfoEl(data, purpose){
@@ -33,11 +63,9 @@ function generateWeatherInfoEl(data, purpose){
                 pHumidityEl.textContent = "Humidity: " + data["humidity"] + "%";
                 let pWindSpeedEl = document.createElement("p");
                 pWindSpeedEl.textContent = "Wind speed: " + data["wind_speed"] + "mph";
-                let pUviIndex = document.createElement('p');
-                pUviIndex.textContent = "UV index: " + data['uvi'];
-                pUviIndex.classList.add(uviWarningCode(data['uvi']));
+                let pUviIndex = uviWarningCode(data['uvi']);
 
-                cElContainer.append(rightNowText, cpDescEl, pTempEl, pFeelTempEl, pHumidityEl, pWindSpeedEl);
+                cElContainer.append(rightNowText, cpDescEl, pTempEl, pFeelTempEl, pHumidityEl, pWindSpeedEl, pUviIndex);
                 //append CURRENT weather loop
                 return cElContainer
             break;
@@ -95,6 +123,12 @@ function displayWeather(cityName, data) {
     while(currentWeatherDiv.firstChild){
         currentWeatherDiv.firstChild.remove();
     };
+    while(eightDayForecastEl.firstChild){
+        eightDayForecastEl.firstChild.remove();
+    };
+
+    // uncenters search items and sets up weather layout
+    topRowBoxEl.classList.add('top-row-box-dyn');
 
     // -------------- City Header + DESC Els -------------- //
     // div element that will hold the h2 of the city name

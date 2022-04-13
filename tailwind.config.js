@@ -30,7 +30,17 @@ module.exports = {
     'w-4/5',
     'search-items',
     'current-weather',
-    'top-row-box'
+    'top-row-box',
+    'md:flex-row',
+    'flex-col',
+    'md:justify-around',
+    'top-row-box-dyn',
+    'pr-1',
+    'uvi-green',
+    'uvi-yellow',
+    'uvi-orange',
+    'uvi-red',
+    'uvi-purple'
   ],
   theme: {
     screens:{

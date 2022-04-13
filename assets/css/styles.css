@@ -8,7 +8,7 @@
                         }*/
 @layer components{
     .top-row-box{
-        @apply flex md:flex-row flex-col md:justify-around md:mt-10
+        @apply flex justify-center md:mt-10
     }
     .search-items{
         @apply flex flex-col items-center
@@ -26,6 +26,9 @@
     .default-text{
         @apply text-lg items-center text-stone-700
     }
+    .top-row-box-dyn{
+        @apply md:flex-row flex-col md:justify-around
+    }
     .h2-styling{
         @apply text-5xl md:text-6xl text-stone-700
     }
@@ -38,8 +41,23 @@
     .current-day-box{
         
     }
+    .uvi-green{
+        @apply border-2 border-green-400 border-solid rounded-xl bg-green-400
+    }
+    .uvi-yellow{
+        @apply border-2 border-yellow-400 border-solid rounded-xl bg-yellow-400
+    }
+    .uvi-orange{
+        @apply border-2 border-orange-400 border-solid rounded-xl bg-orange-400
+    }
+    .uvi-red{
+        @apply border-2 border-red-400 border-solid rounded-xl bg-red-400
+    }
+    .uvi-purple{
+        @apply border-2 border-purple-400 border-solid rounded-xl bg-purple-400
+    }
     .eight-day-box{
-        @apply justify-center shadow-lg md:mt-20
+        @apply justify-center shadow-lg md:mt-16 mt-6
     }
     .day-container{
         @apply border-2 border-black text-center bg-indigo-300 w-full items-center
