@@ -235,6 +235,8 @@ function displayWeather(cityName, data) {
     eightDayForecastEl.appendChild(eigthtDayFlexBox);
 };
 
+// search history
+
 let citySearchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
 function displaySearchHistory() {
@@ -314,8 +316,13 @@ function getWeather(event){
     })
 }
 
-
+function searchHistoryClick(event) {
+    cityInputEl.value = event.target.innerHTML;
+    getWeather(event);
+    cityInputEl.value = null
+}
 
 // event listener that fires when a city name is searched
-cityInputButtonEl.addEventListener("click", getWeather)
+cityInputButtonEl.addEventListener("click", getWeather);
+searchHistoryEl.addEventListener('click', searchHistoryClick);
 displaySearchHistory();
