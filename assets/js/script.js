@@ -235,14 +235,30 @@ function displayWeather(cityName, data) {
     currentWeatherDiv.appendChild(currentDayFlexBox);
     eightDayForecastEl.appendChild(eigthtDayFlexBox);
 };
-let citySearchHistory = {}
+let citySearchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 function saveSearch(cityName) {
-    console.log('save search active ' + cityName);
-    citySearchHistory.one = cityName
-    localStorage.setItem('searchHistory', JSON.stringify(citySearchHistory))
-    pEl = document.createElement('p');
-    pEl.textContent = cityName;
-    searchHistoryEl.appendChild(pEl);
+    console.log(citySearchHistory);
+    for(i=0; i < citySearchHistory.length; i++){
+        if(cityName === citySearchHistory[i]){
+            citySearchHistory.splice(i, 1);
+        };
+    };
+    citySearchHistory.unshift(cityName);
+    
+    while (citySearchHistory.length > 5){
+        citySearchHistory.pop();
+    };
+
+    console.log(citySearchHistory);
+
+    while(searchHistoryEl.firstChild){
+        searchHistoryEl.firstChild.remove();
+    };
+    for(i=0; i < citySearchHistory.length; i++){
+        liEl = document.createElement('li');
+        liEl.innerHTML = citySearchHistory[i];
+        searchHistoryEl.appendChild(liEl);
+    };
     // only display 5 citys
     // if city re-searched then no duplicate saved in history
 };
