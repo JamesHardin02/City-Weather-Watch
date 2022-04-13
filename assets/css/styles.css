@@ -38,9 +38,6 @@
     .fxcol{
         @apply flex flex-col
     }
-    .current-day-box{
-        
-    }
     .uvi-green{
         @apply border-2 border-green-400 border-solid rounded-xl bg-green-400
     }
@@ -61,5 +58,8 @@
     }
     .day-container{
         @apply border-2 border-black text-center bg-indigo-300 w-full items-center
+    }
+    .search-history{
+        @apply bg-indigo-500 hover:bg-indigo-700 text-indigo-100 border-2 border-stone-700 hover:border-stone-500 m-1 text-center text-lg
     }
 }

@@ -159,7 +159,6 @@ function displayWeather(cityName, data) {
     // ------------ current day div --------------//
     let currentDayFlexBox = document.createElement('div');
     currentDayFlexBox.classList.add('fxcol');
-    currentDayFlexBox.classList.add('current-day-box');
     // ------------ current day div ---------//
 
     // --------------  END City Header+DESC Els -------------- //
@@ -245,7 +244,8 @@ function displaySearchHistory() {
     for(i=0; i < citySearchHistory.length; i++){
         liEl = document.createElement('li');
         liEl.innerHTML = citySearchHistory[i];
-        liEl.classList.add('bg-indigo-400');
+
+        liEl.classList.add('search-history');
         searchHistoryEl.appendChild(liEl);
     };
 };

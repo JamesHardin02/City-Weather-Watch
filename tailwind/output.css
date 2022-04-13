@@ -565,9 +565,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   flex-direction: column;
 }
 
-.current-day-box{
-}
-
 .uvi-green {
   border-radius: 0.75rem;
   border-width: 2px;
@@ -641,6 +638,27 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(165 180 252 / var(--tw-bg-opacity));
   text-align: center;
+}
+
+.search-history {
+  margin: 0.25rem;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(68 64 60 / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
+  text-align: center;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  --tw-text-opacity: 1;
+  color: rgb(224 231 255 / var(--tw-text-opacity));
+}
+
+.search-history:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(120 113 108 / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(67 56 202 / var(--tw-bg-opacity));
 }
 
 /* @layer components{custom style a component via utility classes*/
@@ -721,11 +739,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-indigo-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(165 180 252 / var(--tw-bg-opacity));
-}
-
-.bg-indigo-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(129 140 248 / var(--tw-bg-opacity));
 }
 
 .pr-1 {
