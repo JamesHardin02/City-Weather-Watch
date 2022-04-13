@@ -3,6 +3,7 @@ const cityInputButtonEl = document.querySelector("#city-input-button");
 const currentWeatherDiv = document.querySelector("#current-weather");
 const eightDayForecastEl = document.querySelector('#eight-day-forecast');
 const topRowBoxEl = document.querySelector('#top-row-box');
+const searchHistoryEl = document.querySelector('#search-history');
 
 // ----------- utility functions----------- //
 function kelvinToFahrenheit(kelvin){
@@ -234,6 +235,17 @@ function displayWeather(cityName, data) {
     currentWeatherDiv.appendChild(currentDayFlexBox);
     eightDayForecastEl.appendChild(eigthtDayFlexBox);
 };
+let citySearchHistory = {}
+function saveSearch(cityName) {
+    console.log('save search active ' + cityName);
+    citySearchHistory.one = cityName
+    localStorage.setItem('searchHistory', JSON.stringify(citySearchHistory))
+    pEl = document.createElement('p');
+    pEl.textContent = cityName;
+    searchHistoryEl.appendChild(pEl);
+    // only display 5 citys
+    // if city re-searched then no duplicate saved in history
+};
 
 // call back function
 function getCity(initData, lat, lon){
@@ -241,15 +253,16 @@ function getCity(initData, lat, lon){
     fetch(weatherApiLink).then(function(response){
         if(response.ok){
             response.json().then(function(cityData){
-                console.log("--------initial fetched data-------")
-                console.log(initData)
-                console.log("-------city weather data-------")
+                console.log("--------initial fetched data-------");
+                console.log(initData);
+                console.log("-------city weather data-------");
                 console.log(cityData);
                 const cityName = initData[0].name;
                 displayWeather(cityName, cityData);
+                saveSearch(cityName);
             })
         }else{
-            alert("Error, no weather data for coordinates")
+            alert("Error, no weather data for coordinates");
         }
     })
 }
