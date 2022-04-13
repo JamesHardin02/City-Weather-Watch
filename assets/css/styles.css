@@ -26,8 +26,20 @@
     .default-text{
         @apply text-lg items-center text-stone-700
     }
+    .header{
+        @apply bg-indigo-500 w-full mx-auto md:h-24 h-20 border-b-8 border-orange-450 rounded flex items-center justify-center
+    }
+    .header-title{
+        @apply text-3xl xs:text-4xl sm:text-5xl text-indigo-100 text-center align-text-bottom
+    }
     .top-row-box-dyn{
         @apply md:flex-row md:justify-around flex-col  items-center
+    }
+    .search-title{
+        @apply mt-5 mb-2 default-text font-bold
+    }
+    .input-box{
+        @apply h-20 rounded-l-full text-center
     }
     .h2-styling{
         @apply text-center text-5xl md:text-6xl text-stone-700

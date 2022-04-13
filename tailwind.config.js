@@ -41,7 +41,11 @@ module.exports = {
     'uvi-orange',
     'uvi-red',
     'uvi-purple',
-    'search-history'
+    'search-history',
+    'input-box',
+    'search-title',
+    'header-title',
+    'header'
   ],
   theme: {
     screens:{
