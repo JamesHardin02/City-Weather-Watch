@@ -164,10 +164,6 @@ function displayWeather(cityName, data) {
     // --------------  END City Header+DESC Els -------------- //
 
     // --------------five day forecast section----------- //
-    let fiveDayFlexBox = document.createElement('div');
-    fiveDayFlexBox.classList.add('fxcol');
-    fiveDayFlexBox.classList.add('eight-day-box');
-
     let fiveDayDivEl = document.createElement("div");
     fiveDayDivEl.classList.add("flex"); 
     //----------- end of five day forecast section ---------- //
@@ -200,14 +196,14 @@ function displayWeather(cityName, data) {
                                     if(i <= 5){
                                         dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather", 'sm:w-1/2'));
                                         dayContainer.appendChild(generateWeatherInfoEl(object, 'eightDay'))
-                                        fiveDayDivEl.appendChild(dayContainer);
+                                        eightDayForecastEl.appendChild(dayContainer);
                                     }
                                     break;
                                 case "dt":
                                     // sends unix time stamp to date constructor
                                     if(i <= 5){
                                         dayContainer.appendChild(dateConstructor(object[subproperty]));
-                                        fiveDayDivEl.appendChild(dayContainer);
+                                        eightDayForecastEl.appendChild(dayContainer);
                                     }
                                     break;
                             }   
@@ -220,12 +216,8 @@ function displayWeather(cityName, data) {
     fillContent(data);
     //-------------- end of enternal function ----------- //
     // ---------append all content to page---------- //
-
-
-    fiveDayFlexBox.appendChild(fiveDayDivEl);
-
     currentWeatherDiv.appendChild(currentDayFlexBox);
-    eightDayForecastEl.appendChild(fiveDayFlexBox);
+    // eightDayForecastEl.appendChild(fiveDayDivEl);
 };
 
 // search history
