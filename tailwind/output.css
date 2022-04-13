@@ -496,8 +496,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .btn {
   height: 5rem;
-  width: 10rem;
+  width: 6rem;
   flex: 0 1 auto;
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
   --tw-bg-opacity: 1;
   background-color: rgb(236 110 76 / var(--tw-bg-opacity));
 }
@@ -505,6 +507,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .btn:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(99 102 241 / var(--tw-bg-opacity));
+}
+
+@media (min-width: 640px) {
+  .btn {
+    width: 10rem;
+  }
 }
 
 /* dynamic components */
@@ -617,6 +625,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .eight-day-box {
   margin-top: 1.5rem;
+  flex-wrap: wrap;
   justify-content: center;
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
@@ -672,6 +681,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 1.25rem;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
 .mb-6 {
   margin-bottom: 1.5rem;
 }
@@ -706,6 +719,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .rounded {
   border-radius: 0.25rem;
+}
+
+.rounded-l-full {
+  border-top-left-radius: 9999px;
+  border-bottom-left-radius: 9999px;
 }
 
 .border-2 {

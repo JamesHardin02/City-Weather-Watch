@@ -17,7 +17,7 @@
         @apply flex flex-col items-center pr-5
     }
     .btn{
-        @apply hover:bg-indigo-500 bg-orange-450 flex-initial w-40 h-20
+        @apply hover:bg-indigo-500 bg-orange-450 flex-initial sm:w-40 w-24 h-20 rounded-r-full
     }
     /* dynamic components */
     .flex-items-centered{
@@ -54,7 +54,7 @@
         @apply border-2 border-purple-400 border-solid rounded-xl bg-purple-400
     }
     .eight-day-box{
-        @apply justify-center shadow-lg md:mt-16 mt-6
+        @apply justify-center shadow-lg md:mt-16 mt-6 flex-wrap
     }
     .day-container{
         @apply border-2 border-black text-center bg-indigo-300 w-full items-center
