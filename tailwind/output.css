@@ -732,6 +732,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 
+@media (min-width: 1024px) {
+  .eight-day-box {
+    width: 50%;
+  }
+}
+
 .day-container {
   width: 33.333333%;
   flex-grow: 1;
