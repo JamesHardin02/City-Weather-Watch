@@ -23,15 +23,23 @@
         text-indigo-100 text-center align-text-bottom">
         City Weather Watch</h1>
     </div>
-    <div>
-        <form class="flex flex-col text-center items-center gap-5">
-            <h2 class="flex-initial mt-5 default-text font-bold">Search Weather By City</h2>
-            <input class="flex-initial w-100 h-20" id="city-input"type="text" placeholder="Search A City"/>
-            <button id="city-input-button" class="btn" type="submit">Search</button>
-        </form>
+    <div class="top-row-box">
+        <div>
+            <form class="search-items">
+                <h2 class="mt-5 default-text font-bold">Search Weather By City</h2>
+                <div>
+                    <input class="w-50 h-20" id="city-input"type="text" placeholder="Search A City"/>
+                    <button id="city-input-button" class="btn w-50" type="submit">Search</button>
+                </div>
+            </form>
+            <div>
+                <!-- search history -->
+            </div>
+        </div>
+        <div class="current-weather" id="current-weather">
+        </div>
     </div>
-    <div class="flex flex-col w-full items-center lg:flex-row lg:justify-center lg:mt-7" id="current-weather">
-    </div>
+    <div id="eight-day-forecast"></div>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>

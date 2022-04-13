@@ -470,6 +470,38 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 /* @layer base {overwrite default element styling}*/
 
+.top-row-box {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .top-row-box {
+    margin-top: 2.5rem;
+  }
+
+  .top-row-box {
+    flex-direction: row;
+  }
+
+  .top-row-box {
+    justify-content: space-around;
+  }
+}
+
+.search-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.current-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 1.25rem;
+}
+
 .btn {
   height: 5rem;
   width: 10rem;
@@ -527,14 +559,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   flex-direction: column;
 }
 
-.current-day-box {
-  margin-bottom: 1.5rem;
-}
-
-@media (min-width: 1024px) {
-  .current-day-box {
-    align-self: flex-start;
-  }
+.current-day-box{
 }
 
 .eight-day-box {
@@ -542,6 +567,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+@media (min-width: 768px) {
+  .eight-day-box {
+    margin-top: 5rem;
+  }
 }
 
 .day-container {
@@ -586,24 +617,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 80%;
 }
 
-.flex-initial {
-  flex: 0 1 auto;
-}
-
-.flex-col {
-  flex-direction: column;
-}
-
 .items-center {
   align-items: center;
 }
 
 .justify-center {
   justify-content: center;
-}
-
-.gap-5 {
-  gap: 1.25rem;
 }
 
 .rounded {
@@ -726,18 +745,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 1024px) {
-  .lg\:mt-7 {
-    margin-top: 1.75rem;
-  }
-
-  .lg\:flex-row {
-    flex-direction: row;
-  }
-
-  .lg\:justify-center {
-    justify-content: center;
-  }
-
   .lg\:self-start {
     align-self: flex-start;
   }

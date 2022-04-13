@@ -1,7 +1,7 @@
 const cityInputEl = document.querySelector("#city-input");
 const cityInputButtonEl = document.querySelector("#city-input-button");
 const currentWeatherDiv = document.querySelector("#current-weather");
-
+const eightDayForecastEl = document.querySelector('#eight-day-forecast')
 // ----------- utility functions----------- //
 function kelvinToFahrenheit(kelvin){
     return Math.trunc((kelvin - 273.15) * 9/5 + 32);
@@ -165,25 +165,18 @@ function displayWeather(cityName, data) {
                             switch(subproperty){
                                 case "weather":
                                     //sends icon code to generate an img element with icon
-                                    if(i <= 4){
+                                    if(i <= 5){
                                         dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather", 'sm:w-1/2'));
                                         dayContainer.appendChild(generateWeatherInfoEl(object, 'eightDay'))
                                         topEightDayDivEl.appendChild(dayContainer);
-                                    }else{
-                                        dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather", 'sm:w-1/2'));
-                                        dayContainer.appendChild(generateWeatherInfoEl(object, 'eightDay'))
-                                        bottomEightDayDivEl.appendChild(dayContainer)
                                     }
                                     
                                     break;
                                 case "dt":
                                     // sends unix time stamp to date constructor
-                                    if(i <= 4){
+                                    if(i <= 5){
                                         dayContainer.appendChild(dateConstructor(object[subproperty]));
                                         topEightDayDivEl.appendChild(dayContainer);
-                                    }else{
-                                        dayContainer.appendChild(dateConstructor(object[subproperty]));
-                                        bottomEightDayDivEl.appendChild(dayContainer)
                                     }
                                     
                                     break;
@@ -205,7 +198,7 @@ function displayWeather(cityName, data) {
     eigthtDayFlexBox.appendChild(bottomEightDayDivEl);
 
     currentWeatherDiv.appendChild(currentDayFlexBox);
-    currentWeatherDiv.appendChild(eigthtDayFlexBox);
+    eightDayForecastEl.appendChild(eigthtDayFlexBox);
 };
 
 // call back function

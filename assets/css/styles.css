@@ -7,6 +7,15 @@
                             .p-21{padding 5.5rem;}
                         }*/
 @layer components{
+    .top-row-box{
+        @apply flex md:flex-row flex-col md:justify-around md:mt-10
+    }
+    .search-items{
+        @apply flex flex-col items-center
+    }
+    .current-weather{
+        @apply flex flex-col items-center pr-5
+    }
     .btn{
         @apply hover:bg-indigo-500 bg-orange-450 flex-initial w-40 h-20
     }
@@ -27,10 +36,10 @@
         @apply flex flex-col
     }
     .current-day-box{
-        @apply mb-6 lg:self-start
+        
     }
     .eight-day-box{
-        @apply justify-center shadow-lg
+        @apply justify-center shadow-lg md:mt-20
     }
     .day-container{
         @apply border-2 border-black text-center bg-indigo-300 w-full items-center
