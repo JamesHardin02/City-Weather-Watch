@@ -40,7 +40,8 @@ module.exports = {
     'uvi-yellow',
     'uvi-orange',
     'uvi-red',
-    'uvi-purple'
+    'uvi-purple',
+    'bg-indigo-400'
   ],
   theme: {
     screens:{

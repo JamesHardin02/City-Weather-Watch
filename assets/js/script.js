@@ -235,7 +235,21 @@ function displayWeather(cityName, data) {
     currentWeatherDiv.appendChild(currentDayFlexBox);
     eightDayForecastEl.appendChild(eigthtDayFlexBox);
 };
+
 let citySearchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+function displaySearchHistory() {
+    while(searchHistoryEl.firstChild){
+        searchHistoryEl.firstChild.remove();
+    };
+    for(i=0; i < citySearchHistory.length; i++){
+        liEl = document.createElement('li');
+        liEl.innerHTML = citySearchHistory[i];
+        liEl.classList.add('bg-indigo-400');
+        searchHistoryEl.appendChild(liEl);
+    };
+};
+
 function saveSearch(cityName) {
     console.log(citySearchHistory);
     for(i=0; i < citySearchHistory.length; i++){
@@ -244,21 +258,13 @@ function saveSearch(cityName) {
         };
     };
     citySearchHistory.unshift(cityName);
-    
     while (citySearchHistory.length > 5){
         citySearchHistory.pop();
     };
 
-    console.log(citySearchHistory);
+    localStorage.setItem('searchHistory', JSON.stringify(citySearchHistory));
 
-    while(searchHistoryEl.firstChild){
-        searchHistoryEl.firstChild.remove();
-    };
-    for(i=0; i < citySearchHistory.length; i++){
-        liEl = document.createElement('li');
-        liEl.innerHTML = citySearchHistory[i];
-        searchHistoryEl.appendChild(liEl);
-    };
+    displaySearchHistory();
     // only display 5 citys
     // if city re-searched then no duplicate saved in history
 };
@@ -312,5 +318,4 @@ function getWeather(event){
 
 // event listener that fires when a city name is searched
 cityInputButtonEl.addEventListener("click", getWeather)
-
-//Local storage add 5 most recent searches
+displaySearchHistory();
