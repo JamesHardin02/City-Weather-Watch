@@ -706,13 +706,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 
   .five-day-box {
-    gap: 0.25rem;
+    justify-content: space-evenly;
+  }
+
+  .five-day-box {
+    gap: 0px;
   }
 }
 
 @media (min-width: 640px) {
   .five-day-box {
     flex-wrap: nowrap;
+  }
+
+  .five-day-box {
+    gap: 0.25rem;
   }
 }
 
@@ -732,7 +740,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 
   .five-day-box {
-    width: 66.666667%;
+    width: 83.333333%;
   }
 }
 
@@ -770,6 +778,23 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 
+@media (min-width: 1024px) {
+  .five-day-header {
+    padding-right: 1.25rem;
+  }
+
+  .five-day-header {
+    text-align: right;
+  }
+}
+
+@media (min-width: 1280px) {
+  .five-day-header {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
 .day-container {
   width: 33.333333%;
   flex-grow: 1;
@@ -788,6 +813,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 @media (min-width: 475px) {
   .day-container {
     flex-grow: 0;
+  }
+
+  .day-container {
+    flex-basis: auto;
+  }
+}
+
+@media (min-width: 640px) {
+  .day-container {
+    flex: 0 1 auto;
   }
 }
 
