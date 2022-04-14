@@ -1,4 +1,5 @@
 const colors = require('tailwindcss/colors')
+const { flexGrow } = require('tailwindcss/defaultTheme')
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
@@ -24,7 +25,7 @@ module.exports = {
     'default-text',
     'fxcol',
     'current-day-box',
-    'eight-day-box',
+    'five-day-box',
     'day-container',
     'sm:w-1/2',
     'w-4/5',
@@ -45,7 +46,8 @@ module.exports = {
     'input-box',
     'search-title',
     'header-title',
-    'header'
+    'header',
+    'five-day-header'
   ],
   theme: {
     screens:{

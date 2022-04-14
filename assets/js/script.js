@@ -1,7 +1,7 @@
 const cityInputEl = document.querySelector("#city-input");
 const cityInputButtonEl = document.querySelector("#city-input-button");
 const currentWeatherDiv = document.querySelector("#current-weather");
-const eightDayForecastEl = document.querySelector('#five-day-forecast');
+const fiveDayForecastEl = document.querySelector('#five-day-forecast');
 const topRowBoxEl = document.querySelector('#top-row-box');
 const searchHistoryEl = document.querySelector('#search-history');
 
@@ -124,8 +124,8 @@ function displayWeather(cityName, data) {
     while(currentWeatherDiv.firstChild){
         currentWeatherDiv.firstChild.remove();
     };
-    while(eightDayForecastEl.firstChild){
-        eightDayForecastEl.firstChild.remove();
+    while(fiveDayForecastEl.firstChild){
+        fiveDayForecastEl.firstChild.remove();
     };
 
     // uncenters search items and sets up weather layout
@@ -166,6 +166,10 @@ function displayWeather(cityName, data) {
     // --------------five day forecast section----------- //
     let fiveDayDivEl = document.createElement("div");
     fiveDayDivEl.classList.add("flex"); 
+    let fiveDayH2El = document.createElement('h2');
+    fiveDayH2El.textContent = "5-Day Forecast: ";
+    fiveDayH2El.classList.add('five-day-header');
+    fiveDayForecastEl.appendChild(fiveDayH2El);
     //----------- end of five day forecast section ---------- //
 
 
@@ -196,14 +200,14 @@ function displayWeather(cityName, data) {
                                     if(i <= 5){
                                         dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather", 'sm:w-1/2'));
                                         dayContainer.appendChild(generateWeatherInfoEl(object, 'eightDay'))
-                                        eightDayForecastEl.appendChild(dayContainer);
+                                        fiveDayForecastEl.appendChild(dayContainer);
                                     }
                                     break;
                                 case "dt":
                                     // sends unix time stamp to date constructor
                                     if(i <= 5){
                                         dayContainer.appendChild(dateConstructor(object[subproperty]));
-                                        eightDayForecastEl.appendChild(dayContainer);
+                                        fiveDayForecastEl.appendChild(dayContainer);
                                     }
                                     break;
                             }   
