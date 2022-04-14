@@ -217,7 +217,6 @@ function displayWeather(cityName, data) {
     //-------------- end of enternal function ----------- //
     // ---------append all content to page---------- //
     currentWeatherDiv.appendChild(currentDayFlexBox);
-    // eightDayForecastEl.appendChild(fiveDayDivEl);
 };
 
 // search history

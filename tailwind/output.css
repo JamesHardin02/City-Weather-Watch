@@ -591,13 +591,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .search-title {
-  align-items: center;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  --tw-text-opacity: 1;
-  color: rgb(68 64 60 / var(--tw-text-opacity));
   margin-top: 1.25rem;
   margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   font-weight: 700;
 }
 
@@ -734,7 +731,17 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 @media (min-width: 1024px) {
   .eight-day-box {
-    width: 50%;
+    float: right;
+  }
+
+  .eight-day-box {
+    width: 66.666667%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .eight-day-box {
+    margin-right: 2.5rem;
   }
 }
 

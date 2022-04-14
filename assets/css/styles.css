@@ -36,7 +36,7 @@
         @apply md:flex-row md:justify-around flex-col  items-center
     }
     .search-title{
-        @apply mt-5 mb-2 default-text font-bold
+        @apply mt-5 mb-2 text-xl font-bold
     }
     .input-box{
         @apply h-20 rounded-l-full text-center
@@ -66,7 +66,7 @@
         @apply border-2 border-purple-400 border-solid rounded-xl bg-purple-400
     }
     .eight-day-box{
-        @apply flex sm:flex-row xs:flex-nowrap justify-center flex-wrap shadow-lg md:mt-16 mt-6 xs:mx-4 mx-1 xs:gap-1 lg:w-1/2
+        @apply flex sm:flex-row xs:flex-nowrap justify-center flex-wrap shadow-lg md:mt-16 mt-6 xs:mx-4 mx-1 xs:gap-1 lg:w-2/3 lg:float-right xl:mr-10
     }
     .day-container{
         @apply border-2 border-black text-center bg-indigo-300 w-1/3 flex-grow items-center
