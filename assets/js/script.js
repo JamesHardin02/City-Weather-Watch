@@ -201,17 +201,16 @@ function displayWeather(cityName, data) {
                             switch(subproperty){
                                 case "weather":
                                     //sends icon code to generate an img element with icon
-                                    if(i <= 5){
+                                    if(i <= 6 && i !== 1){
                                         dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather", 'sm:w-1/2'));
-                                        dayContainer.appendChild(generateWeatherInfoEl(object, 'eightDay'))
+                                        dayContainer.appendChild(generateWeatherInfoEl(object, 'eightDay'));
                                         fiveDayForecastEl.appendChild(dayContainer);
                                     }
                                     break;
                                 case "dt":
                                     // sends unix time stamp to date constructor
-                                    if(i <= 5){
+                                    if(i <= 6 && i !== 1){
                                         dayContainer.appendChild(dateConstructor(object[subproperty]));
-                                        fiveDayForecastEl.appendChild(dayContainer);
                                     }
                                     break;
                             }   
