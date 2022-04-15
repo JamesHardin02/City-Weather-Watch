@@ -3,7 +3,7 @@ const cityInputButtonEl = document.querySelector("#city-input-button");
 const currentWeatherDiv = document.querySelector("#current-weather");
 const fiveDayForecastEl = document.querySelector('#five-day-forecast');
 const topRowBoxEl = document.querySelector('#top-row-box');
-const searchHistoryEl = document.querySelector('#search-history');
+const searchHistoryUlEl = document.querySelector('#search-history');
 
 // ----------- utility functions----------- //
 function kelvinToFahrenheit(kelvin){
@@ -231,15 +231,15 @@ function displayWeather(cityName, data) {
 let citySearchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
 function displaySearchHistory() {
-    while(searchHistoryEl.firstChild){
-        searchHistoryEl.firstChild.remove();
+    while(searchHistoryUlEl.firstChild){
+        searchHistoryUlEl.firstChild.remove();
     };
     for(i=0; i < citySearchHistory.length; i++){
         liEl = document.createElement('li');
         liEl.innerHTML = citySearchHistory[i];
 
         liEl.classList.add('search-history');
-        searchHistoryEl.appendChild(liEl);
+        searchHistoryUlEl.appendChild(liEl);
     };
 };
 
@@ -287,6 +287,9 @@ function getCity(initData, lat, lon){
     sent to a function when then extracts that data and populates elements with it dynamically 
     onto the page*/
     //Higher order function
+/* <<** ----------- getWeather ----------- **>>
+* 
+<<** ---------------------------------------------------------- **>>*/
 function getWeather(event){
     event.preventDefault();
     //Gets city, caps 1st letter, and puts it in the url
@@ -313,7 +316,14 @@ function searchHistoryClick(event) {
     cityInputEl.value = null
 }
 
-// event listener that fires when a city name is searched
+/* <<** ----------- event listeners + function call ----------- **>>
+* cityInputButtonEl event listener
+*   - the getWeather function fetches weather data from submitted city name
+* searchHistoryUlEl event listener
+*   - listens for clicks on dynamically created li elements
+* displaySearchHistory function call
+*   - loads search history from local storage and appends data to the page
+<<** ---------------------------------------------------------- **>>*/
 cityInputButtonEl.addEventListener("click", getWeather);
-searchHistoryEl.addEventListener('click', searchHistoryClick);
+searchHistoryUlEl.addEventListener('click', searchHistoryClick);
 displaySearchHistory();
