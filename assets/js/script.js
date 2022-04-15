@@ -62,7 +62,7 @@ function dateConstructor(unixTimestamp){
     return dateP;
 }
 
-function generateWeatherInfoEl(data, purpose){
+function createWeatherInfoEl(data, purpose){
     for(const property in data){
         switch(purpose){
             case "current":
@@ -123,10 +123,17 @@ function createIconEl(iconCode, altDesc, widthClass){
 };
 // --------end utility functions---------- //
 
-// takes weather data and dynamically popualtes elements with it to then display on the page
+/** <<** ----------- displayWeather function ----------- **>>
+*  Description: 
+*  Dynamically appends weather data to the page
+
+*  Process:
+*  removes current weather and 5-day forecast data from the page ->
+*  creates flexboxes, divs, and content elements and adds style classes to them ->
+*  calls a funct  REFACTOR HEADER ELS INTO EITHER OWN FUNCTION OR INTO createWeatherInfoEl FUNC
+<<** ---------------------------------------------------------- **>> */
 function displayWeather(cityName, data) {
-    /* if there are child elements in the foundation division then remove them
-        this clears the page for the new search data*/
+    // removes weather data children
     while(currentWeatherDiv.firstChild){
         currentWeatherDiv.firstChild.remove();
     };
@@ -154,19 +161,12 @@ function displayWeather(cityName, data) {
     // flexbox to hold the header and icon beside each other
     let headerFlexDiv = document.createElement('div');
     headerFlexDiv.classList.add("city-header-box");
-    
-    // -------------- current day description div+p els -------------- //
-    let descDivEl = document.createElement('div');
-    descDivEl.classList.add("default-text");
-    descDivEl.classList.add('fxcol');
-    // ----------current day description p elements------- //
-    // ------------ end of current day description div+p els--------------- //
 
-    // ------------ current day div --------------//
+    // holds all current day content: "CONTAINER"
+    // - Weather data elements handled by createWeatherInfoEl()
+    //   which returns a container appended in fillContent() to currentDayFlexBox
     let currentDayFlexBox = document.createElement('div');
     currentDayFlexBox.classList.add('fxcol');
-    // ------------ current day div ---------//
-
     // --------------  END City Header+DESC Els -------------- //
 
     // --------------five day forecast section----------- //
@@ -178,8 +178,14 @@ function displayWeather(cityName, data) {
     fiveDayForecastEl.appendChild(fiveDayH2El);
     //----------- end of five day forecast section ---------- //
 
+/** <<** ----------- fillContent function ----------- **>>
+*  Description: 
+*  Dynamically appends weather data to the page
 
-    // ------------- enternal function -------------//
+*  Process:
+*  removes current weather and 5-day forecast data from the page ->
+*  creates all flexboxes, divs, and content elements and adds style classes to them ->
+<<** ---------------------------------------------------------- **>> */
     function fillContent(data) {
         // construct loop                        
         let i = 0
@@ -190,7 +196,7 @@ function displayWeather(cityName, data) {
                     headerFlexDiv.appendChild(h2DivEl);
                     headerFlexDiv.appendChild(iconDivEl);
                     currentDayFlexBox.appendChild(headerFlexDiv);
-                    currentDayFlexBox.appendChild(generateWeatherInfoEl(data[property], 'current'))
+                    currentDayFlexBox.appendChild(createWeatherInfoEl(data[property], 'current'))
                     break;
 
                 case "daily":
@@ -205,7 +211,7 @@ function displayWeather(cityName, data) {
                                     //sends icon code to generate an img element with icon
                                     if(i <= 6 && i !== 1){
                                         dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather", 'sm:w-1/2'));
-                                        dayContainer.appendChild(generateWeatherInfoEl(object, 'eightDay'));
+                                        dayContainer.appendChild(createWeatherInfoEl(object, 'eightDay'));
                                         fiveDayForecastEl.appendChild(dayContainer);
                                     }
                                     break;
@@ -228,14 +234,14 @@ function displayWeather(cityName, data) {
     currentWeatherDiv.appendChild(currentDayFlexBox);
 };
 
-// search history
-
 /** <<** ----------- displaySearchHistory function ----------- **>>
 *  Description: 
 *  Dynamically appends search history data to the page
 
 *  Process:
-*  
+*  loops through searchHistoryUlEl and rempoves all children ->
+*  loops through citySearchHistory and creates li for each city name saved
+*  to local storage, dynamically styles them, and appends them to searchHistoryUlEl
 <<** ---------------------------------------------------------- **>> */
 function displaySearchHistory() {
     while(searchHistoryUlEl.firstChild){
@@ -244,7 +250,6 @@ function displaySearchHistory() {
     for(i=0; i < citySearchHistory.length; i++){
         liEl = document.createElement('li');
         liEl.innerHTML = citySearchHistory[i];
-
         liEl.classList.add('search-history');
         searchHistoryUlEl.appendChild(liEl);
     };
@@ -265,8 +270,7 @@ function displaySearchHistory() {
 *     the top of the search history column)
 *  -> while loop ?checks if citySearchHistory.length > 5 -> if true ->
 *     removes all positions greater than 5 from the array
-*  -> citySearchHistory is saved to local storage
-*  -> displaySearchHistory is called
+*  -> citySearchHistory is saved to local storage -> displaySearchHistory is called
 <<** ---------------------------------------------------------- **>> */
 function saveSearch(cityName) {
     for(i=0; i < citySearchHistory.length; i++){
