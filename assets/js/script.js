@@ -5,6 +5,8 @@ const fiveDayForecastEl = document.querySelector('#five-day-forecast');
 const topRowBoxEl = document.querySelector('#top-row-box');
 const searchHistoryUlEl = document.querySelector('#search-history');
 
+let citySearchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
 // ----------- utility functions----------- //
 function kelvinToFahrenheit(kelvin){
     return Math.trunc((kelvin - 273.15) * 9/5 + 32);
@@ -228,7 +230,7 @@ function displayWeather(cityName, data) {
 
 // search history
 
-let citySearchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
 
 function displaySearchHistory() {
     while(searchHistoryUlEl.firstChild){
@@ -243,8 +245,25 @@ function displaySearchHistory() {
     };
 };
 
+/** <<** ----------- saveSearch function ----------- **>>
+*  Description: 
+*  Saves a sucessfully searched city to the search history in local storage
+*  and displays the updated search history on the page via displaySearchHistory() 
+*  - displaySearchHistory dynamically appends search history data to the page
+
+*  Process:
+*  loops through citySearchHistory array -> 
+*  ?check if cityName equals the value at index 'i' ->
+*  if true -> removes the value from index i "||" if false-> no code executed
+*  -> cityName inserted to the front of the array
+*  - (this is so the most recently searched city will be appended to the
+*     the top of the search history column)
+*  -> while loop ?checks if citySearchHistory.length > 5 -> if true ->
+*     removes all positions greater than 5 from the array
+*  -> citySearchHistory is saved to local storage
+*  -> displaySearchHistory is called
+<<** ---------------------------------------------------------- **>> */
 function saveSearch(cityName) {
-    console.log(citySearchHistory);
     for(i=0; i < citySearchHistory.length; i++){
         if(cityName === citySearchHistory[i]){
             citySearchHistory.splice(i, 1);
@@ -256,10 +275,7 @@ function saveSearch(cityName) {
     };
 
     localStorage.setItem('searchHistory', JSON.stringify(citySearchHistory));
-
     displaySearchHistory();
-    // only display 5 citys
-    // if city re-searched then no duplicate saved in history
 };
 
 /** <<** ----------- getCity function ----------- **>>
