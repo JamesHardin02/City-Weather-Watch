@@ -81,7 +81,7 @@ function generateWeatherInfoEl(data, purpose){
                 let pHumidityEl = document.createElement("p");
                 pHumidityEl.textContent = "Humidity: " + data["humidity"] + "%";
                 let pWindSpeedEl = document.createElement("p");
-                pWindSpeedEl.textContent = "Wind speed: " + data["wind_speed"] + "mph";
+                pWindSpeedEl.textContent = "Wind speed: " + data["wind_speed"] + " MPH";
                 let pUviIndex = uviWarningCode(data['uvi']);
 
                 cElContainer.append(date, rightNowText, cpDescEl, pTempEl, pFeelTempEl, pHumidityEl, pWindSpeedEl, pUviIndex);
@@ -93,14 +93,14 @@ function generateWeatherInfoEl(data, purpose){
                 edElContainer.classList.add('fxcol');
                 edElContainer.classList.add('default-text');
 
-                let edpDescEl = document.createElement('p');
-                edpDescEl.textContent = data["weather"][0]["description"];
-                let pHighTempEl = document.createElement("p");
-                pHighTempEl.textContent = "High: " + kelvinToFahrenheit(data["temp"]["max"]) + "°";
-                let pLowTempEl = document.createElement("p");
-                pLowTempEl.textContent = "Low: " + kelvinToFahrenheit(data["temp"]["min"]) + "°";
+                let pDayTempEl = document.createElement("p");
+                pDayTempEl.textContent = "Temp: " + kelvinToFahrenheit(data["temp"]['day']) + "°";
+                let pDayHumidityEl = document.createElement("p");
+                pDayHumidityEl.textContent = "Humidity: " + data["humidity"] + "%";
+                let pDayWindSpeedEl = document.createElement('p');
+                pDayWindSpeedEl.textContent = "Wind: " + data["wind_speed"] + " MPH";
 
-                edElContainer.append(edpDescEl, pHighTempEl, pLowTempEl);
+                edElContainer.append(pDayTempEl, pDayHumidityEl, pDayWindSpeedEl);
                 return edElContainer
             break;
         }
