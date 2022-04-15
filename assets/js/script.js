@@ -44,6 +44,22 @@ function uviWarningCode(index){
     }
 }
 
+function dateConstructor(unixTimestamp){
+    const milliseconds = unixTimestamp * 1000; // 1575909015000
+    const dateObject = new Date(milliseconds);
+
+    const day = dateObject.toLocaleString("en-US", {weekday: "long"}); // Monday
+    const month = dateObject.toLocaleString("en-US", {month: "long"}); // December
+    const dayNum = dateObject.toLocaleString("en-US", {day: "numeric"}); // 9
+    const year = dateObject.toLocaleString("en-US", {year: "numeric"}); // 2022
+
+    const date = day + ", " + month + " " + dayNum + ", " + year;
+    let dateP = document.createElement("p");
+    dateP.classList.add('date-text')
+    dateP.textContent = date;
+    return dateP;
+}
+
 function generateWeatherInfoEl(data, purpose){
     for(const property in data){
         switch(purpose){
@@ -52,7 +68,9 @@ function generateWeatherInfoEl(data, purpose){
                 cElContainer.classList.add('fxcol');
                 cElContainer.classList.add('default-text');
 
+                let date = dateConstructor(data['dt']);
                 let rightNowText = document.createElement('p');
+                rightNowText.classList.add('underline');
                 rightNowText.textContent = "Weather right now:";
                 let cpDescEl = document.createElement('p');
                 cpDescEl.textContent = data["weather"][0]["description"];
@@ -66,7 +84,7 @@ function generateWeatherInfoEl(data, purpose){
                 pWindSpeedEl.textContent = "Wind speed: " + data["wind_speed"] + "mph";
                 let pUviIndex = uviWarningCode(data['uvi']);
 
-                cElContainer.append(rightNowText, cpDescEl, pTempEl, pFeelTempEl, pHumidityEl, pWindSpeedEl, pUviIndex);
+                cElContainer.append(date, rightNowText, cpDescEl, pTempEl, pFeelTempEl, pHumidityEl, pWindSpeedEl, pUviIndex);
                 //append CURRENT weather loop
                 return cElContainer
             break;
@@ -89,21 +107,7 @@ function generateWeatherInfoEl(data, purpose){
         console.log(data);
     }
 }
-function dateConstructor(unixTimestamp){
-    const milliseconds = unixTimestamp * 1000; // 1575909015000
-    const dateObject = new Date(milliseconds);
 
-    const day = dateObject.toLocaleString("en-US", {weekday: "long"}); // Monday
-    const month = dateObject.toLocaleString("en-US", {month: "long"}); // December
-    const dayNum = dateObject.toLocaleString("en-US", {day: "numeric"}); // 9
-    const year = dateObject.toLocaleString("en-US", {year: "numeric"}); // 2022
-
-    const date = day + ", " + month + " " + dayNum + ", " + year;
-    let dateP = document.createElement("p");
-    dateP.classList.add('default-text')
-    dateP.textContent = date;
-    return dateP;
-}
 function createIconEl(iconCode, altDesc, widthClass){
     var icon = "http://openweathermap.org/img/wn/"+ iconCode +"@2x.png"
     var iconImEl = document.createElement('img');

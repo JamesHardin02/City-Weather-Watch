@@ -23,6 +23,9 @@
     .default-text{
         @apply text-lg items-center text-stone-700
     }
+    .date-text{
+        @apply text-lg font-bold items-center text-stone-700
+    }
     .header{
         @apply bg-indigo-500 w-full mx-auto md:h-24 h-20 border-b-8 border-orange-450 rounded flex items-center justify-center
     }

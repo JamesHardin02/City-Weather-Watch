@@ -528,6 +528,15 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(68 64 60 / var(--tw-text-opacity));
 }
 
+.date-text {
+  align-items: center;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(68 64 60 / var(--tw-text-opacity));
+}
+
 .header {
   margin-left: auto;
   margin-right: auto;
@@ -915,6 +924,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-stone-700 {
   --tw-text-opacity: 1;
   color: rgb(68 64 60 / var(--tw-text-opacity));
+}
+
+.underline {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 
 .shadow-lg {

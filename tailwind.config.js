@@ -47,7 +47,9 @@ module.exports = {
     'search-title',
     'header-title',
     'header',
-    'five-day-header'
+    'five-day-header',
+    'date-text',
+    'underline'
   ],
   theme: {
     screens:{
