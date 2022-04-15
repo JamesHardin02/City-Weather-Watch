@@ -20,12 +20,12 @@ function uviWarningCode(index){
 
     pUviEl = document.createElement('p');
     pUviEl.textContent = index;
-    if (index <= 2) {
+    if (index < 3) {
         //green
         pUviEl.classList.add('uvi-green');
         divEl.append(pTextEl, pUviEl);
         return divEl
-    } else if (index > 2 && index < 6){
+    } else if (index >= 3 && index < 6){
         pUviEl.classList.add('uvi-yellow');
         divEl.append(pTextEl, pUviEl);
         return divEl
