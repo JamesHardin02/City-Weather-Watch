@@ -230,8 +230,13 @@ function displayWeather(cityName, data) {
 
 // search history
 
+/** <<** ----------- displaySearchHistory function ----------- **>>
+*  Description: 
+*  Dynamically appends search history data to the page
 
-
+*  Process:
+*  
+<<** ---------------------------------------------------------- **>> */
 function displaySearchHistory() {
     while(searchHistoryUlEl.firstChild){
         searchHistoryUlEl.firstChild.remove();
