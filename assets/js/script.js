@@ -262,17 +262,30 @@ function saveSearch(cityName) {
     // if city re-searched then no duplicate saved in history
 };
 
-// call back function
-function getCity(initData, lat, lon){
+/** <<** ----------- getCity function ----------- **>>
+*  Description: 
+*  Fetches a city's weather data and calls displayWeather function and 
+*  saveSearch function. 
+*  - displayWeather appends weather data to the page.
+*  - saveSearch saves the searched city to local storage, and from there
+*    appends the city name to search history.
+
+*  Process:
+*  lat (latitude) and lon (longitude) parameter values 
+*  concatenated to api url -> fetch called on api url -> 
+*  ?check if response.ok is truthy -> get json data from response -> 
+*  pass the following parameters into displayWeather()
+*  @param {string} cityName - Name of the city (argument of getCity)
+*  @param {object} cityData - all weather data for the searched city
+*  pass the following parameters into saveSearch()
+*  @param {string} cityName - Name of the city (argument of getCity)
+*  ?if falsy -> alert("Error, no weather data for coordinates")
+<<** ---------------------------------------------------------- **>> */
+function getCity(cityName, lat, lon){
     const weatherApiLink = "https://api.openweathermap.org/data/2.5/onecall?lat="+ lat +"&lon="+ lon +"&appid=33e105b40a9be724f9c8bf226184c956";
     fetch(weatherApiLink).then(function(response){
         if(response.ok){
             response.json().then(function(cityData){
-                console.log("--------initial fetched data-------");
-                console.log(initData);
-                console.log("-------city weather data-------");
-                console.log(cityData);
-                const cityName = initData[0].name;
                 displayWeather(cityName, cityData);
                 saveSearch(cityName);
             })
@@ -282,30 +295,37 @@ function getCity(initData, lat, lon){
     })
 }
 
-/* adds the city name searched into the api url and fetches the data
-    if there is a resonse then it gets formated into json and json data is 
-    sent to a function when then extracts that data and populates elements with it dynamically 
-    onto the page*/
-    //Higher order function
-/* <<** ----------- getWeather ----------- **>>
-* 
-<<** ---------------------------------------------------------- **>>*/
+/** <<** ----------- getWeather function ----------- **>>
+*  Description: 
+*  Gets city name for api url then fetches data. Values from that data
+*  are then sent as arguments/parameters to getCity function
+
+*  Process:
+*  city name edited and stored in a variable for api url -> 
+*  concatenated into url -> fetch called on api url ->
+*  ?check if response.ok is truthy -> get json data from response -> 
+*  pass the following parameters into getCity()
+*  @param {string} data[0].name - Name of the city
+*  @param {number} data[0].lat - Latitude coordinates of the city searched
+*  @param {number} data[0].lon - Longitude coordinates of the city searched
+*  ?if falsy -> alert("please enter a valid city name")
+<<** ---------------------------------------------------------- **>> */
 function getWeather(event){
+    console.log(event);
     event.preventDefault();
     //Gets city, caps 1st letter, and puts it in the url
     let cityCap = cityInputEl.value.toLowerCase();
     let city = cityCap.charAt(0).toUpperCase() + cityCap.slice(1);
     const cityCoordinatesApi = "https://api.openweathermap.org/geo/1.0/direct?q="+ city +"&limit=1&appid=33e105b40a9be724f9c8bf226184c956";
 
-    // fetches data from api url 
     fetch(cityCoordinatesApi)
     .then(function(response){
         if (response.ok){
             response.json().then(function(data){
-                getCity(data, data[0].lat, data[0].lon) //display city weather data
+                getCity(data[0].name, data[0].lat, data[0].lon)
             })
         }else{
-            alert("Not valid city")
+            alert("Please enter a valid city name")
         }
     })
 }
