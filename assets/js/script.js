@@ -292,7 +292,7 @@ function getWeather(event){
     //Gets city, caps 1st letter, and puts it in the url
     let cityCap = cityInputEl.value.toLowerCase();
     let city = cityCap.charAt(0).toUpperCase() + cityCap.slice(1);
-    const cityCoordinatesApi = "http://api.openweathermap.org/geo/1.0/direct?q="+ city +"&limit=1&appid=33e105b40a9be724f9c8bf226184c956";
+    const cityCoordinatesApi = "https://api.openweathermap.org/geo/1.0/direct?q="+ city +"&limit=1&appid=33e105b40a9be724f9c8bf226184c956";
 
     // fetches data from api url 
     fetch(cityCoordinatesApi)
