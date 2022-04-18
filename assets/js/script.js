@@ -130,7 +130,9 @@ function createIconEl(iconCode, altDesc, widthClass){
 *  Process:
 *  removes current weather and 5-day forecast data from the page ->
 *  creates flexboxes, divs, and content elements and adds style classes to them ->
-*  calls a funct  REFACTOR HEADER ELS INTO EITHER OWN FUNCTION OR INTO createWeatherInfoEl FUNC
+*  calls fillContent function which populates elements with weather data ->
+*  the five day forecast elements are appended in fillContent ->
+*  the current weather report elements are appended in the last line of displayWeather
 <<** ---------------------------------------------------------- **>> */
 function displayWeather(cityName, data) {
     // removes weather data children
@@ -144,7 +146,7 @@ function displayWeather(cityName, data) {
     // uncenters search items and sets up weather layout
     topRowBoxEl.classList.add('top-row-box-dyn');
 
-    // -------------- City Header + DESC Els -------------- //
+    // -------------- City Header Els -------------- //
     // div element that will hold the h2 of the city name
     let h2DivEl = document.createElement('div');
     h2DivEl.classList.add('flex-items-center');
@@ -167,7 +169,7 @@ function displayWeather(cityName, data) {
     //   which returns a container appended in fillContent() to currentDayFlexBox
     let currentDayFlexBox = document.createElement('div');
     currentDayFlexBox.classList.add('fxcol');
-    // --------------  END City Header+DESC Els -------------- //
+    // --------------  END City Header Els -------------- //
 
     // --------------five day forecast section----------- //
     let fiveDayDivEl = document.createElement("div");
@@ -180,8 +182,18 @@ function displayWeather(cityName, data) {
 
 /** <<** ----------- fillContent function ----------- **>>
 *  Description: 
-*  Dynamically appends weather data to the page
-
+*  Gets data and fills element content with it then appends those elements to containers. 
+*  Multiple functions are used in order to make code cleaner and easier to modify
+*  <<fillContent() params>>
+*  @param {object} data - Weather data for the searched city
+*  <<createIconEl() params>>
+*  @param {number} data[property]['weather'][0]['icon'] - Icon code for weather API //This is concatenated in a url used for the img src
+*  @param {string} "image of current weather - Alt description attribute
+*  <<createWeatherInfoEl>>
+*  @param {object} data[property] - Weather data for today's date
+*  @param {string} 'current' - passed as the expression to be evaluated in a switch statement
+*  <<dateConstructor() params>>
+*  @param {number} object[subproperty] - Unix timestamp
 *  Process:
 *  removes current weather and 5-day forecast data from the page ->
 *  creates all flexboxes, divs, and content elements and adds style classes to them ->
