@@ -19,8 +19,11 @@
     <div class="header">
         <h1 class="header-title"> City Weather Watch</h1>
     </div>
+    <!-- top-row-box contains all content above the 5-day forecast -->
     <div class="top-row-box" id="top-row-box">
+        <!-- container for the city search bar and the search history -->
         <div>
+            <!-- search form -->
             <form class="search-items">
                 <h2 class="search-title">Search Weather By City</h2>
                 <div class="flex">
@@ -28,16 +31,20 @@
                     <button id="city-input-button" class="btn" type="submit">Search</button>
                 </div>
             </form>
+            <!-- search history container -->
             <div class="mt-5">
-                <!-- search history -->
+                <!-- search history ul -->
                 <ul id="search-history">
                 </ul>
             </div>
         </div>
+        <!-- current weather report -->
         <div class="current-weather" id="current-weather">
         </div>
     </div>
+    <!-- 5-day forecast -->
     <div class="five-day-box" id="five-day-forecast"></div>
+    
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
