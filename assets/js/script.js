@@ -194,15 +194,17 @@ function displayWeather(cityName, data) {
 *  @param {string} 'current' - passed as the expression to be evaluated in a switch statement
 *  <<dateConstructor() params>>
 *  @param {number} object[subproperty] - Unix timestamp
-*  Process:
-*  removes current weather and 5-day forecast data from the page ->
-*  creates all flexboxes, divs, and content elements and adds style classes to them ->
+*  Process: process commented throughout the code
 <<** ---------------------------------------------------------- **>> */
     function fillContent(data) {
-        // construct loop                        
+        // sets let i = 0 to keep count for control structure when creating 5 day weather forcast                    
         let i = 0
+        //loops through entire city weather data
         for(const property in data){
+            // switch statement executes code when the loop finds the case property
             switch(property){
+                /*case: current - appends icon, and header to a container then appends to the current weather flexbox
+                *                 current weather report is appended directly to the flexbox */
                 case "current":
                     iconDivEl.appendChild(createIconEl(data[property]["weather"][0]["icon"],"Image of current weather"));
                     headerFlexDiv.appendChild(h2DivEl);
@@ -210,27 +212,30 @@ function displayWeather(cityName, data) {
                     currentDayFlexBox.appendChild(headerFlexDiv);
                     currentDayFlexBox.appendChild(createWeatherInfoEl(data[property], 'current'))
                     break;
-
+                /* loops through daily array creates a div container for each obj in array 
+                *  then loops through each obj filling the div container with that days data*/
                 case "daily":
                     data[property].forEach((object) => {
+                        // iterates i to skip today's date in data 
                         i++
                         let dayContainer = document.createElement('div');
                         dayContainer.classList.add('fxcol')
                         dayContainer.classList.add('day-container')
+                        // loops through a day's object in the daily array
                         for (const subproperty in object){
                             switch(subproperty){
+                                case "dt":
+                                    if(i <= 6 && i !== 1){
+                                        dayContainer.appendChild(dateConstructor(object[subproperty]));
+                                    }
+                                    break;
                                 case "weather":
-                                    //sends icon code to generate an img element with icon
                                     if(i <= 6 && i !== 1){
                                         dayContainer.appendChild(createIconEl(object[subproperty][0]["icon"], "Image of weather", 'sm:w-1/2'));
                                         dayContainer.appendChild(createWeatherInfoEl(object, 'eightDay'));
+                                        /* appends only the 5 day containers which had their contents filled with data 
+                                        *  to the 5 day forecast container */
                                         fiveDayForecastEl.appendChild(dayContainer);
-                                    }
-                                    break;
-                                case "dt":
-                                    // sends unix time stamp to date constructor
-                                    if(i <= 6 && i !== 1){
-                                        dayContainer.appendChild(dateConstructor(object[subproperty]));
                                     }
                                     break;
                             }   
@@ -241,8 +246,8 @@ function displayWeather(cityName, data) {
         }
     }
     fillContent(data);
-    //-------------- end of enternal function ----------- //
-    // ---------append all content to page---------- //
+
+    // ---------append current weather report content to page---------- //
     currentWeatherDiv.appendChild(currentDayFlexBox);
 };
 
