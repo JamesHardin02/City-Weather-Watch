@@ -15,10 +15,7 @@ const fiveDayForecastEl = document.querySelector('#five-day-forecast');
 let citySearchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
 /** <<** ----------- kelvinToFahrenheit function ----------- **>>
-*  Description: 
-*  takes in the temperature in Kelvins, performs the Kelvins to Fahrenheit formula, 
-*  and returns the equal temperature in Fahrenheit
-
+*  Description: Converts temperature in Kelvin to Fahrenheit
 *  @param {number} kelvin - temperature in kelvin to be converted to fahrenheit
 <<** ---------------------------------------------------------- **>> */
 function kelvinToFahrenheit(kelvin){
@@ -29,7 +26,6 @@ function kelvinToFahrenheit(kelvin){
 /** <<** ----------- uviWarningCode function ----------- **>>
 *  Description: 
 *  Creates an element that is color coded according to the severity of the UVI sent
-
 *  @param {number} index - The UVI index of today (used in current weather report)
 <<** ---------------------------------------------------------- **>> */
 function uviWarningCode(index){
@@ -73,7 +69,6 @@ function uviWarningCode(index){
 *  Description: 
 *  Creates a day, month/day number, year formated p element
 *  ex: Wednesday, April 20th, 2022
-
 *  @param {number} unixTimestamp - the unix timestamp of the date desired
 <<** ---------------------------------------------------------- **>> */
 function dateConstructor(unixTimestamp){
@@ -95,7 +90,6 @@ function dateConstructor(unixTimestamp){
 /** <<** ----------- createWeatherInfoEl function ----------- **>>
 *  Description: 
 *  Creates weather descriptions/reports for either current weather or 5 day forecasts
-
 *  @param {object} data - an object containing data for either current day weather
 *                         or 5-day forecast
 *  @param {string} purpose - used in the switch expression to execute the code that uses the data parameter sent
@@ -168,7 +162,6 @@ function createWeatherInfoEl(data, purpose){
 /** <<** ----------- createIconEl function ----------- **>>
 *  Description: 
 *  Create a weather symbol image from API's provided icon codes
-
 *  @param {number} iconCode - code is concatenated to the image src url
 *  @param {string} altDesc - the alt attribute content for the image tag
 *  @param {string} widthClass - (optional) A tailwind width class, 
@@ -192,13 +185,8 @@ function createIconEl(iconCode, altDesc, widthClass){
 /** <<** ----------- displayWeather function ----------- **>>
 *  Description: 
 *  Dynamically appends weather data to the page
-
-*  Process:
-*  removes current weather and 5-day forecast data from the page ->
-*  creates flexboxes, divs, and content elements and adds style classes to them ->
-*  calls fillContent function which populates elements with weather data ->
-*  the five day forecast elements are appended in fillContent ->
-*  the current weather report elements are appended in the last line of displayWeather
+*  @param {string} cityName - name of the city searched
+*  @param {object} data - Weather data for the searched city
 <<** ---------------------------------------------------------- **>> */
 function displayWeather(cityName, data) {
     // removes weather data children
@@ -250,17 +238,7 @@ function displayWeather(cityName, data) {
 *  Description: 
 *  Gets data and fills element content with it then appends those elements to containers. 
 *  Multiple functions are used in order to make code cleaner and easier to modify
-*  <<fillContent() params>>
 *  @param {object} data - Weather data for the searched city
-*  <<createIconEl() params>>
-*  @param {number} data[property]['weather'][0]['icon'] - Icon code for weather API //This is concatenated in a url used for the img src
-*  @param {string} "image of current weather - Alt description attribute
-*  <<createWeatherInfoEl>>
-*  @param {object} data[property] - Weather data for today's date
-*  @param {string} 'current' - passed as the expression to be evaluated in a switch statement
-*  <<dateConstructor() params>>
-*  @param {number} object[subproperty] - Unix timestamp
-*  Process: process commented throughout the code
 <<** ---------------------------------------------------------- **>> */
     function fillContent(data) {
         // sets let i = 0 to keep count for control structure when creating 5 day weather forcast                    
@@ -318,13 +296,7 @@ function displayWeather(cityName, data) {
 };
 
 /** <<** ----------- displaySearchHistory function ----------- **>>
-*  Description: 
-*  Dynamically appends search history data to the page
-
-*  Process:
-*  loops through searchHistoryUlEl and rempoves all children ->
-*  loops through citySearchHistory and creates li for each city name saved
-*  to local storage, dynamically styles them, and appends them to searchHistoryUlEl
+*  Description: Dynamically appends search history data to the page
 <<** ---------------------------------------------------------- **>> */
 function displaySearchHistory() {
     while(searchHistoryUlEl.firstChild){
@@ -340,22 +312,13 @@ function displaySearchHistory() {
 
 /** <<** ----------- saveSearch function ----------- **>>
 *  Description: 
-*  Saves a sucessfully searched city to the search history in local storage
+*  Saves a sucessfully searched city to search history in local storage
 *  and displays the updated search history on the page via displaySearchHistory() 
 *  - displaySearchHistory dynamically appends search history data to the page
-
-*  Process:
-*  loops through citySearchHistory array -> 
-*  ?check if cityName equals the value at index 'i' ->
-*  if true -> removes the value from index i "||" if false-> no code executed
-*  -> cityName inserted to the front of the array
-*  - (this is so the most recently searched city will be appended to the
-*     the top of the search history column)
-*  -> while loop ?checks if citySearchHistory.length > 5 -> if true ->
-*     removes all positions greater than 5 from the array
-*  -> citySearchHistory is saved to local storage -> displaySearchHistory is called
+*  @param {string} cityName - name of the City searched
 <<** ---------------------------------------------------------- **>> */
 function saveSearch(cityName) {
+    // removes if previously searched
     for(i=0; i < citySearchHistory.length; i++){
         if(cityName === citySearchHistory[i]){
             citySearchHistory.splice(i, 1);
@@ -372,29 +335,20 @@ function saveSearch(cityName) {
 
 /** <<** ----------- getCity function ----------- **>>
 *  Description: 
-*  Fetches a city's weather data and calls displayWeather function and 
-*  saveSearch function. 
-*  - displayWeather appends weather data to the page.
-*  - saveSearch saves the searched city to local storage, and from there
-*    appends the city name to search history.
-
-*  Process:
-*  lat (latitude) and lon (longitude) parameter values 
-*  concatenated to api url -> fetch called on api url -> 
-*  ?check if response.ok is truthy -> get json data from response -> 
-*  pass the following parameters into displayWeather()
-*  @param {string} cityName - Name of the city (argument of getCity)
-*  @param {object} cityData - all weather data for the searched city
-*  pass the following parameters into saveSearch()
-*  @param {string} cityName - Name of the city (argument of getCity)
-*  ?if falsy -> alert("Error, no weather data for coordinates")
+*  Fetches a city's weather and calls functions to display the weather data
+*  and to save the city to search history 
+*  @param {string} cityName - Name of the city 
+*  @param {number} lat - latitude of the city, concatenated to url
+*  @param {number} long - longitude of the city, concatenated to url
 <<** ---------------------------------------------------------- **>> */
 function getCity(cityName, lat, lon){
     const weatherApiLink = "https://api.openweathermap.org/data/2.5/onecall?lat="+ lat +"&lon="+ lon +"&appid=33e105b40a9be724f9c8bf226184c956";
     fetch(weatherApiLink).then(function(response){
         if(response.ok){
             response.json().then(function(cityData){
+                // Creates elements for weather data and appends them to the page.
                 displayWeather(cityName, cityData);
+                // Saves the city to local storage and appends it to the page search history. 
                 saveSearch(cityName);
             })
         }else{
@@ -405,21 +359,10 @@ function getCity(cityName, lat, lon){
 
 /** <<** ----------- getWeather function ----------- **>>
 *  Description: 
-*  Gets city name for api url then fetches data. Values from that data
-*  are then sent as arguments/parameters to getCity function
-
-*  Process:
-*  city name edited and stored in a variable for api url -> 
-*  concatenated into url -> fetch called on api url ->
-*  ?check if response.ok is truthy -> get json data from response -> 
-*  pass the following parameters into getCity()
-*  @param {string} data[0].name - Name of the city
-*  @param {number} data[0].lat - Latitude coordinates of the city searched
-*  @param {number} data[0].lon - Longitude coordinates of the city searched
-*  ?if falsy -> alert("please enter a valid city name")
+*  Gets city name from cityInputEl.value then fetches location data for that city,
+*  getCity() then uses that data to fetch weather data for that city
 <<** ---------------------------------------------------------- **>> */
 function getWeather(event){
-    console.log(event);
     event.preventDefault();
     //Gets city, caps 1st letter, and puts it in the url
     let cityCap = cityInputEl.value.toLowerCase();
