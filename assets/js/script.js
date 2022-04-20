@@ -1,18 +1,39 @@
+// ------ index.html elements ------ // 
+// City search form elements
 const cityInputEl = document.querySelector("#city-input");
 const cityInputButtonEl = document.querySelector("#city-input-button");
+// Flex box
+const topRowBoxEl = document.querySelector('#top-row-box');
+// Search history Ul element
+const searchHistoryUlEl = document.querySelector('#search-history');
+// Weather data containers
 const currentWeatherDiv = document.querySelector("#current-weather");
 const fiveDayForecastEl = document.querySelector('#five-day-forecast');
-const topRowBoxEl = document.querySelector('#top-row-box');
-const searchHistoryUlEl = document.querySelector('#search-history');
+// ------ end of index.html elements ------ // 
 
+// Search history local storage data (if none then empty array)
 let citySearchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
-// ----------- utility functions----------- //
+/** <<** ----------- kelvinToFahrenheit function ----------- **>>
+*  Description: 
+*  takes in the temperature in Kelvins, performs the Kelvins to Fahrenheit formula, 
+*  and returns the equal temperature in Fahrenheit
+
+*  @param {number} kelvin - temperature in kelvin to be converted to fahrenheit
+<<** ---------------------------------------------------------- **>> */
 function kelvinToFahrenheit(kelvin){
+    // Math.Trunc() removes any fractional digits
     return Math.trunc((kelvin - 273.15) * 9/5 + 32);
 };
 
+/** <<** ----------- uviWarningCode function ----------- **>>
+*  Description: 
+*  Creates an element that is color coded according to the severity of the UVI sent
+
+*  @param {number} index - The UVI index of today (used in current weather report)
+<<** ---------------------------------------------------------- **>> */
 function uviWarningCode(index){
+    // flex box to hold the text and uvi color code
     divEl = document.createElement('div');
     divEl.classList.add('flex');
 
@@ -22,8 +43,10 @@ function uviWarningCode(index){
 
     pUviEl = document.createElement('p');
     pUviEl.textContent = index;
+    /* if else statements to determine the severity of the UVI and
+    *  adds a custom class to color code the pUviEl accordingly
+    *  then appends text and uvi els to the flex box and returns the flex box*/
     if (index < 3) {
-        //green
         pUviEl.classList.add('uvi-green');
         divEl.append(pTextEl, pUviEl);
         return divEl
@@ -46,15 +69,23 @@ function uviWarningCode(index){
     }
 }
 
+/** <<** ----------- dateConstructor function ----------- **>>
+*  Description: 
+*  Creates a day, month/day number, year formated p element
+*  ex: Wednesday, April 20th, 2022
+
+*  @param {number} unixTimestamp - the unix timestamp of the date desired
+<<** ---------------------------------------------------------- **>> */
 function dateConstructor(unixTimestamp){
-    const milliseconds = unixTimestamp * 1000; // 1575909015000
+    const milliseconds = unixTimestamp * 1000;
     const dateObject = new Date(milliseconds);
 
-    const day = dateObject.toLocaleString("en-US", {weekday: "long"}); // Monday
-    const month = dateObject.toLocaleString("en-US", {month: "long"}); // December
-    const dayNum = dateObject.toLocaleString("en-US", {day: "numeric"}); // 9
-    const year = dateObject.toLocaleString("en-US", {year: "numeric"}); // 2022
+    const day = dateObject.toLocaleString("en-US", {weekday: "long"}); // day ex: Wednesday
+    const month = dateObject.toLocaleString("en-US", {month: "long"}); // month ex:April
+    const dayNum = dateObject.toLocaleString("en-US", {day: "numeric"}); // day number ex: 20th
+    const year = dateObject.toLocaleString("en-US", {year: "numeric"}); // year ex: 2022
 
+    // string concatenation for p text content
     const date = day + ", " + month + " " + dayNum + ", " + year;
     let dateP = document.createElement("p");
     dateP.classList.add('date-text')
