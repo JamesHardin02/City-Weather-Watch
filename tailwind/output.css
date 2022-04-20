@@ -468,6 +468,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-sepia:  ;
 }
 
+/* Container classes */
+
 .top-row-box {
   display: flex;
   justify-content: center;
@@ -476,6 +478,21 @@ Ensure the default browser behavior of the `hidden` attribute.
 @media (min-width: 768px) {
   .top-row-box {
     margin-top: 2.5rem;
+  }
+}
+
+.top-row-box-dyn {
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .top-row-box-dyn {
+    flex-direction: row;
+  }
+
+  .top-row-box-dyn {
+    justify-content: space-around;
   }
 }
 
@@ -496,6 +513,8 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-right: 1.25rem;
   }
 }
+
+/* classes for search form elements */
 
 .btn {
   height: 5rem;
@@ -518,7 +537,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 
-/* dynamic components */
+.input-box {
+  height: 5rem;
+  border-top-left-radius: 9999px;
+  border-bottom-left-radius: 9999px;
+  text-align: center;
+}
+
+/* utility classes */
+
+.fxcol {
+  display: flex;
+  flex-direction: column;
+}
+
+/* text styling */
 
 .default-text {
   align-items: center;
@@ -536,6 +569,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-text-opacity: 1;
   color: rgb(68 64 60 / var(--tw-text-opacity));
 }
+
+.search-title {
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(68 64 60 / var(--tw-text-opacity));
+}
+
+/* header styling */
 
 .header {
   margin-left: auto;
@@ -582,39 +627,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 
-.top-row-box-dyn {
-  flex-direction: column;
-  align-items: center;
-}
+/* classes for current weather report */
 
-@media (min-width: 768px) {
-  .top-row-box-dyn {
-    flex-direction: row;
-  }
-
-  .top-row-box-dyn {
-    justify-content: space-around;
-  }
-}
-
-.search-title {
-  margin-top: 1.25rem;
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-  font-weight: 700;
-  --tw-text-opacity: 1;
-  color: rgb(68 64 60 / var(--tw-text-opacity));
-}
-
-.input-box {
-  height: 5rem;
-  border-top-left-radius: 9999px;
-  border-bottom-left-radius: 9999px;
-  text-align: center;
-}
-
-.h2-styling {
+.city-title {
   text-align: center;
   font-size: 3rem;
   line-height: 1;
@@ -623,7 +638,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 768px) {
-  .h2-styling {
+  .city-title {
     font-size: 3.75rem;
     line-height: 1;
   }
@@ -644,10 +659,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   }
 }
 
-.fxcol {
-  display: flex;
-  flex-direction: column;
-}
+/* UVI color code classes */
 
 .uvi-green {
   border-radius: 0.75rem;
@@ -698,6 +710,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(192 132 252 / var(--tw-bg-opacity));
 }
+
+/* 5-day forecast classes */
 
 .five-day-box {
   margin-left: 0.25rem;
@@ -834,6 +848,8 @@ Ensure the default browser behavior of the `hidden` attribute.
     flex: 0 1 auto;
   }
 }
+
+/* Search history styling */
 
 .search-history {
   margin: 0.25rem;

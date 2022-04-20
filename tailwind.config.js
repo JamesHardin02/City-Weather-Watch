@@ -20,7 +20,7 @@ module.exports = {
     'shadow-lg',
     'text-stone-700',
     'flex-items-center',
-    'h2-styling',
+    'city-title',
     'city-header-box',
     'default-text',
     'fxcol',

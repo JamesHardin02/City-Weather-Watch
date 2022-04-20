@@ -1,11 +1,13 @@
-
-
 @tailwind base;
 @tailwind components; 
 @tailwind utilities;
 @layer components{
+    /* Container classes */
     .top-row-box{
         @apply flex justify-center md:mt-10
+    }
+    .top-row-box-dyn{
+        @apply md:flex-row md:justify-around flex-col  items-center
     }
     .search-items{
         @apply flex flex-col items-center
@@ -13,43 +15,51 @@
     .current-weather{
         @apply flex flex-col items-center sm:pr-5
     }
+
+    /* classes for search form elements */
     .btn{
         @apply hover:bg-indigo-500 bg-orange-450 flex-initial sm:w-40 w-24 h-20 rounded-r-full
     }
-    /* dynamic components */
+    .input-box{
+        @apply h-20 rounded-l-full text-center
+    }
+
+    /* utility classes */
     .flex-items-centered{
         @apply flex items-center
     }
+    .fxcol{
+        @apply flex flex-col
+    }
+
+    /* text styling */
     .default-text{
         @apply text-lg items-center text-stone-700
     }
     .date-text{
         @apply text-lg font-bold items-center text-stone-700
     }
+    .search-title{
+        @apply mt-5 mb-2 text-xl font-bold text-stone-700
+    }
+
+    /* header styling */
     .header{
         @apply bg-indigo-500 w-full mx-auto md:h-24 h-20 border-b-8 border-orange-450 rounded flex items-center justify-center
     }
     .header-title{
         @apply text-3xl xs:text-4xl sm:text-5xl text-indigo-100 text-center align-text-bottom
     }
-    .top-row-box-dyn{
-        @apply md:flex-row md:justify-around flex-col  items-center
-    }
-    .search-title{
-        @apply mt-5 mb-2 text-xl font-bold text-stone-700
-    }
-    .input-box{
-        @apply h-20 rounded-l-full text-center
-    }
-    .h2-styling{
+
+    /* classes for current weather report */
+    .city-title{
         @apply text-center text-5xl md:text-6xl text-stone-700
     }
     .city-header-box{
         @apply flex mt-5 lg:mr-5 lg:ml-4
     }
-    .fxcol{
-        @apply flex flex-col
-    }
+
+    /* UVI color code classes */
     .uvi-green{
         @apply border-2 border-green-400 border-solid rounded-xl bg-green-400
     }
@@ -65,6 +75,8 @@
     .uvi-purple{
         @apply border-2 border-purple-400 border-solid rounded-xl bg-purple-400
     }
+
+    /* 5-day forecast classes */
     .five-day-box{
         @apply flex flex-wrap justify-center mx-1 mt-6 xs:justify-evenly xs:gap-0 xs:mx-4 sm:gap-1 sm:flex-nowrap md:mt-16 lg:mt-20 lg:w-5/6 lg:float-right xl:mr-10
     }
@@ -74,6 +86,8 @@
     .day-container{
         @apply border-2 border-stone-700 text-center bg-indigo-300 shadow-lg w-1/3 flex-grow items-center xs:flex-grow-0 xs:basis-auto sm:flex-initial
     }
+
+    /* Search history styling */
     .search-history{
         @apply bg-indigo-500 hover:bg-indigo-700 text-indigo-100 border-2 border-stone-700 hover:border-stone-500 m-1 text-center text-lg 
     }
